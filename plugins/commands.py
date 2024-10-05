@@ -20,10 +20,10 @@ join_db = JoinReqs
 @Client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):
      if len(message.command) == 2 and message.command[1].startswith('getfile'):
-     movies = message.command[1].split("-", 1)[1] 
-     movie = movies.replace('-',' ')
-     message.text = movie 
-     await auto_filter(client, message) 
+       movies = message.command[1].split("-", 1)[1] 
+       movie = movies.replace('-',' ')
+       message.text = movie 
+       await auto_filter(client, message) 
      return            
     await message.react(emoji="🔥")
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
