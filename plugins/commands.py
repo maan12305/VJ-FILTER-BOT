@@ -1,4 +1,4 @@
-
+from pm_filter import auto_filter
 import os, string, logging, random, asyncio, time, datetime, re, sys, json, base64
 from Script import script
 from pyrogram import Client, filters, enums
