@@ -43,4 +43,4 @@ dnspython==2.3.0
 ffmpeg-python>=0.2.0
 pyromod==1.5
 openai==0.25.0
-git+https://codeload.github.com/KurimuzonAkuma/pyrogram/zip/refs/heads/dev
+git+https://github.com/Joelkb/cinemagoer
