@@ -1,7 +1,4 @@
-# Don't Remove Credit @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot @Tech_VJ
-# Ask Doubt on telegram @KingVJ01
-
+from pm_filter import auto_filter
 import os, string, logging, random, asyncio, time, datetime, re, sys, json, base64
 from Script import script
 from pyrogram import Client, filters, enums
@@ -19,7 +16,12 @@ logger = logging.getLogger(__name__)
 
 BATCH_FILES = {}
 join_db = JoinReqs
-
+         if len(message.command) == 2 and message.command[1].startswith('getfile'):
+          movies = message.command[1].split("-", 1)[1] 
+          movie = movies.replace('-',' ')
+          message.text = movie 
+          await auto_filter(client, message) 
+            return
 @Client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):
     await message.react(emoji="🔥")
@@ -44,6 +46,12 @@ async def start(client, message):
         await db.add_user(message.from_user.id, message.from_user.first_name)
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
+    if len(message.command) == 2 and message.command[1].startswith('getfile'):
+       movies = message.command[1].split("-", 1)[1] 
+       movie = movies.replace('-',' ')
+       message.text = movie 
+       await auto_filter(client, message) 
+         return
         if PREMIUM_AND_REFERAL_MODE == True:
             buttons = [[
                 InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
@@ -125,6 +133,12 @@ async def start(client, message):
             parse_mode=enums.ParseMode.MARKDOWN
             )
         return
+    if len(message.command) == 2 and message.command[1].startswith('getfile'):
+      movies = message.command[1].split("-", 1)[1] 
+      movie = movies.replace('-',' ')
+      message.text = movie 
+      await auto_filter(client, message) 
+       return
     if len(message.command) == 2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
         if PREMIUM_AND_REFERAL_MODE == True:
             buttons = [[
@@ -180,6 +194,12 @@ async def start(client, message):
                     await delete_all_referal_users(user_id)
                     await client.send_message(chat_id = user_id, text = "<b>You Have Successfully Completed Total Referal.\n\nYou Added In Premium For {}</b>".format(REFERAL_PREMEIUM_TIME))
                     return 
+              if len(message.command) == 2 and message.command[1].startswith('getfile'):
+                 movies = message.command[1].split("-", 1)[1] 
+                 movie = movies.replace('-',' ')
+                 message.text = movie 
+                await auto_filter(client, message) 
+                   return
         else:
             if PREMIUM_AND_REFERAL_MODE == True:
                 buttons = [[
