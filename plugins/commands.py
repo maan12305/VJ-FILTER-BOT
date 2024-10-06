@@ -24,7 +24,7 @@ async def start(client, message):
        movie = movies.replace('-',' ')
        message.text = movie 
        await auto_filter(client, message) 
-   return            
+      return            
        await message.react(emoji="🔥")
      if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         buttons = [[
