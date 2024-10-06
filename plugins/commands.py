@@ -167,7 +167,12 @@ async def start(client, message):
         movies = message.command[1].split("-", 1)[1] 
         movie = movies.replace('-',' ')
         message.text = movie 
-        await auto_filter(client, message) 
+        content = message.text
+        user = message.from_user.first_name
+        user_id = message.from_user.id
+        ai_search = True
+        reply_msg = await bot.send_message(message.from_user.id, f"<b><i>Searching For {content} 🔍</i></b>", reply_to_message_id=message.id)
+        await auto_filter(bot, content, message, reply_msg, ai_search)
         return
     data = message.command[1]
     if data.split("-", 1)[0] == "VJ":
