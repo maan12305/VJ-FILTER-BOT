@@ -1,3 +1,7 @@
+# Don't Remove Credit @VJ_Botz
+# Subscribe YouTube Channel For Amazing Bot @Tech_VJ
+# Ask Doubt on telegram @KingVJ01
+
 from pm_filter import auto_filter
 import os, string, logging, random, asyncio, time, datetime, re, sys, json, base64
 from Script import script
@@ -18,15 +22,15 @@ BATCH_FILES = {}
 join_db = JoinReqs
 
 @Client.on_message(filters.command("start") & filters.incoming)
-async def start(client, message):           
-       await message.react(emoji="🔥")
-               if len(message.command) == 2 and message.command[1].startswith('getfile'):
-            movies = message.command[1].split("-", 1)[1] 
-            movie = movies.replace('-',' ')
-            message.text = movie 
-            await auto_filter(client, message) 
-            return
-     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+async def start(client, message):
+    await message.react(emoji="🔥")
+    if len(message.command) == 2 and message.command[1].startswith('getfile'):
+    movies = message.command[1].split("-", 1)[1] 
+    movie = movies.replace('-',' ')
+    message.text = movie
+   await auto_filter(client, message) 
+   return   
+   if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         buttons = [[
             InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
         ],[
