@@ -20,6 +20,12 @@ join_db = JoinReqs
 @Client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):           
        await message.react(emoji="🔥")
+               if len(message.command) == 2 and message.command[1].startswith('getfile'):
+            movies = message.command[1].split("-", 1)[1] 
+            movie = movies.replace('-',' ')
+            message.text = movie 
+            await auto_filter(client, message) 
+            return
      if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         buttons = [[
             InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
