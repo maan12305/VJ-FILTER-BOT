@@ -4,9 +4,7 @@
 
 
 class script(object):
-    START_TXT = """<b><blockquote>Hᴇʟʟᴏ {}, ᴍʏ ɴᴀᴍᴇ <a href=https://t.me/{}>{}</a></blockquote>
-    
-ɪ ᴀᴍ【 ʟᴀᴛᴇꜱᴛ ᴀᴅᴠᴀɴᴄᴇᴅ 】ᴀɴᴅ ᴘᴏᴡᴇʀꜰᴜʟ ᴀᴜᴛᴏ ꜰɪʟᴛᴇʀ ʙᴏᴛ+└ᴀᴡᴇꜱᴏᴍᴇ ꜰɪʟᴛᴇʀ┘+├ꜰɪʟᴇ ꜱᴛᴏʀᴇ ʙᴏᴛ┤+☞ᴍᴀɴᴜᴀʟ ꜰɪᴛᴇʀ☜ ᴀɴᴅ ᢵᴄᴜꜱᴛᴏᴍɪᴢᴇᴅ ꜱʜᴏʀᴛɴᴇʀ ꜱᴜᴘᴘᴏʀᴛᢴ ᢾᴀɴᴅ ʙᴇꜱᴛ ᴜɪ ᴘᴇʀꜰᴏʀᴍᴀɴᴄᴇᢿ</b>"""
+    START_TXT = """<b>ʜᴇʏ {}, {}\n\nɪ ᴀᴍ ᴀ ᴘᴏᴡᴇʀꜰᴜʟ ᴀᴜᴛᴏꜰɪʟᴛᴇʀ ʙᴏᴛ. ʏᴏᴜ ᴄᴀɴ ᴜsᴇ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ɪ ᴡɪʟʟ ɢɪᴠᴇ ᴍᴏᴠɪᴇs ᴏʀ sᴇʀɪᴇs ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴀɴᴅ ᴘᴍ !! 😍"""
 
     CLONE_START_TXT = """<b><blockquote>ʜᴇʟʟᴏ {}, ᴍʏ ɴᴀᴍᴇ <a href=https://t.me/{}>{}</a></blockquote>
     
@@ -15,16 +13,7 @@ class script(object):
     HELP_TXT = """<b>Hᴇʏ {}
 Hᴇʀᴇ Is Tʜᴇ Hᴇʟᴘ Fᴏʀ Mʏ Cᴏᴍᴍᴀɴᴅs.</b>"""
 
-    ABOUT_TXT = """<b><blockquote>⍟───[ MY ᴅᴇᴛᴀɪʟꜱ ]───⍟</blockquote>
-    
-‣ ᴍʏ ɴᴀᴍᴇ : <a href=https://t.me/{}>{}</a>
-‣ ᴍʏ ʙᴇsᴛ ғʀɪᴇɴᴅ : <a href='tg://settings'>ᴛʜɪs ᴘᴇʀsᴏɴ</a> 
-‣ ᴅᴇᴠᴇʟᴏᴘᴇʀ : <a href='https://t.me/Im_professor_22'>PROFESSOR</a> 
-‣ ʟɪʙʀᴀʀʏ : <a href='https://docs.pyrogram.org/'>ᴘʏʀᴏɢʀᴀᴍ</a> 
-‣ ʟᴀɴɢᴜᴀɢᴇ : <a href='https://www.python.org/download/releases/3.0/'>ᴘʏᴛʜᴏɴ 3</a> 
-‣ ᴅᴀᴛᴀ ʙᴀsᴇ : <a href='https://www.mongodb.com/'>ᴍᴏɴɢᴏ ᴅʙ</a> 
-‣ ʙᴏᴛ sᴇʀᴠᴇʀ : <a href='https://heroku.com'>ʜᴇʀᴏᴋᴜ</a> 
-‣ ʙᴜɪʟᴅ sᴛᴀᴛᴜs : ᴠ2.7.1 [sᴛᴀʙʟᴇ]></b>"""
+    ABOUT_TEXT = """<blockquote><b>‣ ᴍʏ ɴᴀᴍᴇ : ROSSY\n‣ ᴄʀᴇᴀᴛᴏʀ : <a href='https://t.me/Im_professor_22'>PROFESSOR</a>\n‣ ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ\n‣ ʟᴀɴɢᴜᴀɢᴇ : ᴘʏᴛʜᴏɴ\n‣ ᴅᴀᴛᴀ ʙᴀsᴇ : ᴍᴏɴɢᴏ ᴅʙ\n‣ ʜᴏsᴛᴇᴅ ᴏɴ  : ᴀʟʟ ᴡᴇʙ\n‣ ʙᴜɪʟᴅ sᴛᴀᴛᴜs : ᴠ5.2 [sᴛᴀʙʟᴇ]</b></blockquote>"""
 
     CLONE_ABOUT_TXT = """<b><blockquote>⍟───[ ᴍʏ ᴀʙᴏᴜᴛ ]───⍟</blockquote>
     
@@ -47,7 +36,7 @@ Hᴇʀᴇ Is Tʜᴇ Hᴇʟᴘ Fᴏʀ Mʏ Cᴏᴍᴍᴀɴᴅs.</b>"""
     SUBSCRIPTION_TXT = """
 <b>ʀᴇғᴇʀʀᴇ ʏᴏᴜʀ ʟɪɴᴋ ᴛᴏ ʏᴏᴜʀ ғʀɪᴇɴᴅs, ғᴀᴍɪʟʏ, ᴄʜᴀɴɴᴇʟ ᴀɴᴅ ɢʀᴏᴜᴘ ᴛᴏ ɢᴇᴛ ғʀᴇᴇ ᴘʀᴇᴍɪᴜᴍ ғᴏʀ {}
 
-ʀᴇғᴇʀᴀʟ ʟɪɴᴋ - https://telegram.me/{}?start=VJ-{}
+ʀᴇғᴇʀᴀʟ ʟɪɴᴋ - https://telegram.me/{}?start=ROSSY-{}
 
 ɪғ {} ᴜɴɪǫᴜᴇ ᴜsᴇʀ sᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ ᴡɪᴛʜ ʏᴏᴜʀ ʀᴇғᴇʀᴀʟ ʟɪɴᴋ ᴛʜᴇɴ ʏᴏᴜ ᴡɪʟʟ ᴀᴜᴛᴏᴍᴀᴛɪᴄᴀʟʟʏ ᴀᴅᴅᴇᴅ ɪɴ ᴘʀᴇᴍɪᴜᴍ ʟɪsᴛ.
 
@@ -180,22 +169,13 @@ Nᴀᴍᴇ - {}"""
     CUDNT_FND = """ɪ ᴄᴏᴜʟᴅɴ'ᴛ ꜰɪɴᴅ ᴀɴʏᴛʜɪɴɢ ʀᴇʟᴀᴛᴇᴅ ᴛᴏ {}
 ᴅɪᴅ ʏᴏᴜ ᴍᴇᴀɴ ᴀɴʏ ᴏɴᴇ ᴏꜰ ᴛʜᴇꜱᴇ?"""
 
-    I_CUDNT = """<b>sᴏʀʀʏ ɴᴏ ꜰɪʟᴇs ᴡᴇʀᴇ ꜰᴏᴜɴᴅ ꜰᴏʀ ʏᴏᴜʀ ʀᴇǫᴜᴇꜱᴛ {} 😕
+    I_CUDNT = """🤧 𝗛𝗲𝗹𝗹𝗼 {}
 
-ᴄʜᴇᴄᴋ ʏᴏᴜʀ sᴘᴇʟʟɪɴɢ ɪɴ ɢᴏᴏɢʟᴇ ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ 😃
+𝗜 𝗰𝗼𝘂𝗹𝗱𝗻'𝘁 𝗳𝗶𝗻𝗱 𝗮𝗻𝘆 𝗺𝗼𝘃𝗶𝗲 𝗼𝗿 𝘀𝗲𝗿𝗶𝗲𝘀 𝗶𝗻 𝘁𝗵𝗮𝘁 𝗻𝗮𝗺𝗲.. 😐"""
 
-ᴍᴏᴠɪᴇ ʀᴇǫᴜᴇꜱᴛ ꜰᴏʀᴍᴀᴛ 👇
+    I_CUD_NT = """😑 𝗛𝗲𝗹𝗹𝗼 {}
 
-ᴇxᴀᴍᴘʟᴇ : Uncharted or Uncharted 2022 or Uncharted En
-
-ꜱᴇʀɪᴇꜱ ʀᴇǫᴜᴇꜱᴛ ꜰᴏʀᴍᴀᴛ 👇
-
-ᴇxᴀᴍᴘʟᴇ : Loki S01 or Loki S01E04 or Lucifer S03E24
-
-🚯 ᴅᴏɴᴛ ᴜꜱᴇ ➠ ':(!,./)</b>"""
-
-    I_CUD_NT = """ɪ ᴄᴏᴜʟᴅɴ'ᴛ ꜰɪɴᴅ ᴀɴʏ ᴍᴏᴠɪᴇ ʀᴇʟᴀᴛᴇᴅ ᴛᴏ {}.
-ᴘʟᴇᴀꜱᴇ ᴄʜᴇᴄᴋ ᴛʜᴇ ꜱᴘᴇʟʟɪɴɢ ᴏɴ ɢᴏᴏɢʟᴇ ᴏʀ ɪᴍᴅʙ..."""
+𝗜 𝗰𝗼𝘂𝗹𝗱𝗻'𝘁 𝗳𝗶𝗻𝗱 𝗮𝗻𝘆𝘁𝗵𝗶𝗻𝗴 𝗿𝗲𝗹𝗮𝘁𝗲𝗱 𝘁𝗼 𝘁𝗵𝗮𝘁 😞... 𝗰𝗵𝗲𝗰𝗸 𝘆𝗼𝘂𝗿 𝘀𝗽𝗲𝗹𝗹𝗶𝗻𝗴."""
 
     MVE_NT_FND = """ᴍᴏᴠɪᴇ ɴᴏᴛ ꜰᴏᴜɴᴅ ɪɴ ᴅᴀᴛᴀʙᴀꜱᴇ..."""
 
@@ -228,9 +208,7 @@ Nᴀᴍᴇ - {}"""
 
 𝗠𝗲𝘀𝘀𝗮𝗴𝗲 <b>: {}</b>"""
 
-    CAPTION = """<b>📂Fɪʟᴇɴᴀᴍᴇ : {file_name}
-
-<b> Size ⚙️: {file_size}</b>""" 
+    CAPTION = """**⍟ File Name🔻**</b>\n\n`{file_name}`</a></b>\n\n<b>**⍟  File Size 🔻\n\n [ {file_size} ]</a></b>**"""
 
     IMDB_TEMPLATE_TXT = """
 <b>Query: {qurey}
