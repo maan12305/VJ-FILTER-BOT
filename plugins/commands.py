@@ -508,7 +508,6 @@ async def start(client, message):
     user = message.from_user.id
     files_ = await get_file_details(file_id)           
     if not files_:
-if not files_:
         pre, file_id = ((base64.urlsafe_b64decode(data + "=" * (-len(data) % 4))).decode("ascii")).split("_", 1)
         try:
             if not await db.has_premium_access(message.from_user.id):
