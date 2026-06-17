@@ -516,7 +516,7 @@ async def start(client, message):
             data + "=" * (-len(data) % 4)
          ).decode("ascii")
 
-         pre, file_id = decoded.split("_", 1)
+         pre, file_id = decoded.split("_",1)
 
        except (binascii.Error, ValueError, UnicodeDecodeError):
          await message.reply_text("❌ Invalid or expired link.")
