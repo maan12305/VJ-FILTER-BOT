@@ -509,7 +509,9 @@ async def start(client, message):
     files_ = await get_file_details(file_id)           
     if not files_:
         import binascii
+import base64
 
+try:
     decoded = base64.urlsafe_b64decode(
         data + "=" * (-len(data) % 4)
     ).decode("ascii")
