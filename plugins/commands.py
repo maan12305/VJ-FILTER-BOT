@@ -510,7 +510,6 @@ async def start(client, message):
     if not files_:
         import binascii
 
-try:
     decoded = base64.urlsafe_b64decode(
         data + "=" * (-len(data) % 4)
     ).decode("ascii")
