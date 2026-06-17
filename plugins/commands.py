@@ -516,13 +516,13 @@ async def start(client, message):
             data + "=" * (-len(data) % 4)
          ).decode("ascii")
 
-         pre, file_id = decoded.split("_",1)
+        pre, file_id = decoded.split("_", 1)
 
-       except (binascii.Error, ValueError, UnicodeDecodeError):
-         await message.reply_text("❌ Invalid or expired link.")
-         return
-      if not await db.has_premium_access(message.from_user.id):
-         if not await check_verification(client, message.from_user.id) and VERIFY == True:
+      except (binascii.Error, ValueError, UnicodeDecodeError):
+        await message.reply_text("❌ Invalid or expired link.")
+        return
+     if not await db.has_premium_access(message.from_user.id):
+     if not await check_verification(client, message.from_user.id) and VERIFY == True:
                     btn = [[
                         InlineKeyboardButton("ᴠᴇʀɪғʏ", url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start="))
                     ],[
