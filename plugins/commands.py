@@ -521,7 +521,6 @@ try:
 except (binascii.Error, ValueError, UnicodeDecodeError):
     await message.reply_text("❌ Invalid or expired link.")
     return
-        try:
             if not await db.has_premium_access(message.from_user.id):
                 if not await check_verification(client, message.from_user.id) and VERIFY == True:
                     btn = [[
