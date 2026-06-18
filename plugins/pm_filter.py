@@ -33,6 +33,24 @@ SPELL_CHECK = {}
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
+
+    # Delete links and stop processing
+    if message.text:
+        text = message.text.lower()
+
+        if any(x in text for x in [
+            "http://",
+            "https://",
+            "t.me/",
+            "telegram.me/",
+            "www."
+        ]):
+            try:
+                await message.delete()
+            except:
+                pass
+            return
+
     if message.chat.id != SUPPORT_CHAT_ID:
         settings = await get_settings(message.chat.id)
         chatid = message.chat.id 
