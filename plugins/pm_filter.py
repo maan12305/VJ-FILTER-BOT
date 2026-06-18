@@ -34,6 +34,15 @@ SPELL_CHECK = {}
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
 
+    # Delete @username/channel tags
+    if message.text:
+        if "@" in message.text:
+            try:
+                await message.delete()
+            except:
+                pass
+            return
+
     # Delete links and stop processing
     if message.text:
         text = message.text.lower()
@@ -50,7 +59,6 @@ async def give_filter(client, message):
             except:
                 pass
             return
-
     if message.chat.id != SUPPORT_CHAT_ID:
         settings = await get_settings(message.chat.id)
         chatid = message.chat.id 
