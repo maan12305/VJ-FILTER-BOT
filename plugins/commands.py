@@ -507,7 +507,7 @@ async def start(client, message):
             return
     user = message.from_user.id
     files_ = await get_file_details(file_id)           
-    if not files_:
+if not files_:
     import binascii
     import base64
 
