@@ -2603,8 +2603,7 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
             search = search.replace(".", "")
             files, offset, total_results = await get_search_results(message.chat.id ,search, offset=0, filter=True)
             settings = await get_settings(message.chat.id)
-            if not files:
-
+if not files:
     await reply_msg.edit_text(
         f"⚠️ No file found for: {name}\n\n"
         f"📩 Request this movie from admin.",
@@ -2613,7 +2612,7 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
                 [
                     InlineKeyboardButton(
                         "👨‍💻 Contact Admin",
-                        url="https://t.me/Chat_With_Proffessor_bot"
+                        url="https://t.me/maan12305"
                     )
                 ]
             ]
