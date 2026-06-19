@@ -2606,11 +2606,29 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
             if not files:
                 if settings["spell_check"]:
                     return await advantage_spell_chok(client, name, msg, reply_msg, ai_search)
-                else:
-                    return await reply_msg.edit_text(f"**⚠️ No File Found For Your Query - {name}**\n**Make Sure Spelling Is Correct.**")
+    else:                    
+    await reply_msg.edit_text(
+        "⚜️ 𝐓𝐡𝐢𝐬 𝐌𝐨𝐯𝐢𝐞 𝐍𝐨𝐭 𝐅𝐨𝐮𝐧𝐝 ⚜️\n\n"
+        "Cʜᴇᴄᴋ Yᴏᴜʀ Sᴘᴇʟʟɪɴɢ Oɴ Gᴏᴏɢʟᴇ Aɴᴅ Tʀʏ Aɢᴀɪɴ ✅\n\n"
+        "ʀᴇǫᴜᴇsᴛ ᴛʜɪs ᴍᴏᴠɪᴇ ғʀᴏᴍ ᴀᴅᴍɪɴ"
+    )
+
+    await asyncio.sleep(10)
+
+    try:
+        await message.delete()
+    except:
+        pass
+
+    try:
+        await reply_msg.delete()
+    except:
+        pass
+
+    return                    
         else:
             return
-    else:
+        else:            
         message = msg.message.reply_to_message  # msg will be callback query
         search, files, offset, total_results = spoll
         settings = await get_settings(message.chat.id)
