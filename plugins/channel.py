@@ -2,7 +2,6 @@
 # Subscribe YouTube Channel For Amazing Bot @Tech_VJ
 # Ask Doubt on telegram @KingVJ01
 
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram import Client, filters
 from info import CHANNELS
 from database.ia_filterdb import save_file
@@ -15,13 +14,3 @@ async def media(bot, message):
     media.caption = message.caption
     await save_file(media)
 
-    caption = message.caption or "New Movie Uploaded ✅"
-
-    buttons = InlineKeyboardMarkup(
-        [[InlineKeyboardButton("📂 Get File", url="https://t.me/maan_file_store_BOT?start=start")]]
-    )
-
-    await message.copy(
-    chat_id=-1003730484035,
-    reply_markup=buttons
-    )
