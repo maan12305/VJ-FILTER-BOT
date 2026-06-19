@@ -1,7 +1,3 @@
-#Don't Remove Credit @VJ_Bots
-#Subscribe YouTube Channel For Amazing Bot @Tech_VJ
-#Ask Doubt on telegram @KingVJ01
-
 from pyrogram import Client, filters
 from info import CHANNELS
 from database.ia_filterdb import save_file
@@ -21,30 +17,35 @@ await save_file(media)
 try:
     caption = message.caption or ""
 
-    year = re.search(r"(\d{4})", caption)
-    year = year.group(1) if year else "N/A"
+    year_match = re.search(r"(\d{4})", caption)
+    year = year_match.group(1) if year_match else "N/A"
 
-    audio = re.search(r"(.*?)", caption)
-    audio = audio.group(1) if audio else "N/A"
+    audio_match = re.search(r"(.*?)", caption)
+    audio = audio_match.group(1) if audio_match else "N/A"
 
-    quality = re.search(r"(2160p|1440p|1080p|720p|480p)", caption, re.I)
-    quality = quality.group(1) if quality else "N/A"
+    quality_match = re.search(
+        r"(2160p|1440p|1080p|720p|480p)",
+        caption,
+        re.IGNORECASE
+    )
+    quality = quality_match.group(1) if quality_match else "N/A"
 
-    fmt = re.search(r"(WEB-DL|WEBRip|HDRip|BluRay|HDTS)", caption, re.I)
-    fmt = fmt.group(1) if fmt else "N/A"
+    format_match = re.search(
+        r"(WEB-DL|WEBRip|HDRip|BluRay|HDTS)",
+        caption,
+        re.IGNORECASE
+    )
+    format_type = format_match.group(1) if format_match else "N/A"
 
     name = caption.split("(")[0].strip()
 
-    text = f"""
-
-🎬 {name} ✅
+    text = f"""🎬 {name} ✅
 
 📅 Year - {year}
 🎥 Genre - N/A
-💿 Format - {fmt}
+💿 Format - {format_type}
 🔊 Audio - {audio}
-📺 Quality - {quality}
-"""
+📺 Quality - {quality}"""
 
     await bot.send_message(
         UPDATE_CHANNEL,
