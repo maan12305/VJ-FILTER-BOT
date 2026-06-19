@@ -2633,7 +2633,7 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
         message = msg.message.reply_to_message  # msg will be callback query
         # Fix: unpacked from the actual search results assignment variables
         search, files, offset, total_results = search, files, offset, total_results
-        settings = await get_settings(message.chat.id)
+       # settings = await get_settings(message.chat.id)
         await msg.message.delete()
         
         pre = 'filep' if settings['file_secure'] else 'file'
