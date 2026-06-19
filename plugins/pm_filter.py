@@ -2605,14 +2605,14 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
             settings = await get_settings(message.chat.id)
     if not files:
         await reply_msg.edit_text(
-            f"⚠️ No file found for: {name}\n\n"
-            f"📩 Request this movie from admin.",
+            f"⚜️ 𝐓𝐡𝐢𝐬 𝐌𝐨𝐯𝐢𝐞 𝐍𝐨𝐭 𝐅𝐨𝐮𝐧𝐝 ⚜️\n\n **Cʜᴇᴄᴋ Yᴏᴜʀ Sᴘᴇʟʟɪɴɢ Oɴ Gᴏᴏɢʟᴇ Aɴᴅ Tʀʏ Aɢᴀɪɴ ✅** \n\n"
+            f" **ʀᴇǫᴜᴇsᴛ ᴛʜɪs ᴍᴏᴠɪᴇ ғʀᴏᴍ ᴀᴅᴍɪɴ 👇**",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
                         InlineKeyboardButton(
                             "👨‍💻 Contact Admin",
-                            url="https://t.me/maan12305"
+                            url="https://t.me/Chat_With_Proffessor_bot"
                         )
                     ]
                 ]
