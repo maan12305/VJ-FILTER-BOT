@@ -21,9 +21,7 @@ async def media(bot, message):
         [[InlineKeyboardButton("📂 Get File", url="https://t.me/maan_file_store_BOT?start=start")]]
     )
 
-    await bot.send_message(
-        chat_id=-1003730484035,
-        text=caption,
-        reply_markup=buttons,
-        disable_web_page_preview=True
+    await message.copy(
+    chat_id=-1003730484035,
+    reply_markup=buttons
     )
