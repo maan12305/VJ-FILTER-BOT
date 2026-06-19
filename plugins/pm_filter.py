@@ -2604,29 +2604,14 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
             files, offset, total_results = await get_search_results(message.chat.id ,search, offset=0, filter=True)
             settings = await get_settings(message.chat.id)
             if not files:
-               if settings["spell_check"]:                
+                if settings["spell_check"]:
                     return await advantage_spell_chok(client, name, msg, reply_msg, ai_search)
-               else:
-                 await reply_msg.edit_text(        
-            "⚜️ 𝐓𝐡𝐢𝐬 𝐌𝐨𝐯𝐢𝐞 𝐍𝐨𝐭 𝐅𝐨𝐮𝐧𝐝 ⚜️\n\n"
-            "Cʜᴇᴄᴋ Yᴏᴜʀ Sᴘᴇʟʟɪɴɢ Oɴ Gᴏᴏɢʟᴇ Aɴᴅ Tʀʏ Aɢᴀɪɴ ✅\n\n"
-            "ʀᴇǫᴜᴇsᴛ ᴛʜɪs ᴍᴏᴠɪᴇ ғʀᴏᴍ ᴀᴅᴍɪɴ"
-        )
-
-        await asyncio.sleep(10)
-
-        try:
-            await message.delete()
-        except:
-            pass
-
-        try:
-            await reply_msg.delete()
-        except:
-            pass
+                else:
+                    return await reply_msg.edit_text(f"**⚠️ No File Found For Your Query - {name}**\n**Make Sure Spelling Is Correct.**")
+        else:
             return
-                    
-        message = msg.reply_to_message
+    else:
+        message = msg.message.reply_to_message  # msg will be callback query
         search, files, offset, total_results = spoll
         settings = await get_settings(message.chat.id)
         await msg.message.delete()
@@ -2829,14 +2814,10 @@ async def advantage_spell_chok(client, name, msg, reply_msg, vj_search):
         ]]
         if NO_RESULTS_MSG:
             await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
-        new_text = script.I_CUDNT.format(mv_rqst)
-
-    if reply_msg.text != new_text:
-        k = await reply_msg.edit_text(
-        text=new_text,
-        reply_markup=InlineKeyboardMarkup(button)
-    )
-
+        k = await reply_msg.edit_text(text=script.I_CUDNT.format(mv_rqst), reply_markup=InlineKeyboardMarkup(button))
+        await asyncio.sleep(30)
+        await k.delete()
+        return
     movielist += [movie.get('title') for movie in movies]
     movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
     SPELL_CHECK[mv_id] = movielist
