@@ -2603,7 +2603,7 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
             search = search.replace(".", "")
             files, offset, total_results = await get_search_results(msg.message.chat.id, search, offset=0, filter=True)
             settings = await get_settings(msg.message.chat.id)
-    if not files:
+    if not files:            
         await reply_msg.edit_text(
             f"⚜️ 𝐓𝐡𝐢𝐬 𝐌𝐨𝐯𝐢𝐞 𝐍𝐨𝐭 𝐅𝐨𝐮𝐧𝐝 ⚜️\n\n **Cʜᴇᴄᴋ Yᴏᴜʀ Sᴘᴇʟʟɪɴɢ Oɴ Gᴏᴏɢʟᴇ Aɴᴅ Tʀʏ Aɢᴀɪɴ ✅** \n\n"
             f" **ʀᴇǫᴜᴇsᴛ ᴛʜɪs ᴍᴏᴠɪᴇ ғʀᴏᴍ ᴀᴅᴍɪɴ 👇**",
@@ -2629,7 +2629,7 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
             pass
         return
 
-        else:
+    else:        
         message = msg.message.reply_to_message  # msg will be callback query
         # Fix: unpacked from the actual search results assignment variables
         search, files, offset, total_results = search, files, offset, total_results
