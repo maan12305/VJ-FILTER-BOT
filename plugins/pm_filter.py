@@ -2626,7 +2626,7 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
             pass
             return
                     
-        message = msg.message.reply_to_message  # msg will be callback query
+        message = msg.reply_to_message
         search, files, offset, total_results = spoll
         settings = await get_settings(message.chat.id)
         await msg.message.delete()
