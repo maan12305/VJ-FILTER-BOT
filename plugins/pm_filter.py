@@ -2629,16 +2629,15 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
             pass
         return
 
-    else:
+        else:
         message = msg.message.reply_to_message  # msg will be callback query
         # Fix: unpacked from the actual search results assignment variables
         search, files, offset, total_results = search, files, offset, total_results
-       # settings = await get_settings(message.chat.id)
-       try:
+        settings = await get_settings(message.chat.id)
+        try:
             await msg.message.delete()
         except:
             pass
-        
         pre = 'filep' if settings['file_secure'] else 'file'
         key = f"{message.chat.id}-{message.id}"
         req = message.from_user.id if message.from_user else 0
