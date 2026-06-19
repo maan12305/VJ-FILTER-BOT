@@ -2603,68 +2603,69 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
             search = search.replace(".", "")
             files, offset, total_results = await get_search_results(message.chat.id ,search, offset=0, filter=True)
             settings = await get_settings(message.chat.id)
-if not files:
-    await reply_msg.edit_text(
-        f"⚠️ No file found for: {name}\n\n"
-        f"📩 Request this movie from admin.",
-        reply_markup=InlineKeyboardMarkup(
-            [
+    if not files:
+        await reply_msg.edit_text(
+            f"⚠️ No file found for: {name}\n\n"
+            f"📩 Request this movie from admin.",
+            reply_markup=InlineKeyboardMarkup(
                 [
-                    InlineKeyboardButton(
-                        "👨‍💻 Contact Admin",
-                        url="https://t.me/maan12305"
-                    )
+                    [
+                        InlineKeyboardButton(
+                            "👨‍💻 Contact Admin",
+                            url="https://t.me/maan12305"
+                        )
+                    ]
                 ]
-            ]
+            )
         )
-    )
+        await asyncio.sleep(10)
+        try:
+            await reply_msg.delete()
+        except:
+            pass
+        try:
+            await msg.delete()
+        except:
+            pass
+        return
 
-    await asyncio.sleep(10)
-
-    try:
-        await reply_msg.delete()
-    except:
-        pass
-
-    try:
-        await msg.delete()
-    except:
-        pass
-
-    return
-else:
+    else:
         message = msg.message.reply_to_message  # msg will be callback query
-        search, files, offset, total_results = spoll
+        # Fix: unpacked from the actual search results assignment variables
+        search, files, offset, total_results = search, files, offset, total_results
         settings = await get_settings(message.chat.id)
         await msg.message.delete()
-    pre = 'filep' if settings['file_secure'] else 'file'
-    key = f"{message.chat.id}-{message.id}"
-    req = message.from_user.id if message.from_user else 0
-    FRESH[key] = search
-    temp.GETALL[key] = files
-    temp.SHORT[message.from_user.id] = message.chat.id
-    if settings["button"]:
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"[{get_size(file['file_size'])}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file['file_name'].split()))}", callback_data=f'{pre}#{file["file_id"]}'
-                ),
+        
+        pre = 'filep' if settings['file_secure'] else 'file'
+        key = f"{message.chat.id}-{message.id}"
+        req = message.from_user.id if message.from_user else 0
+        FRESH[key] = search
+        temp.GETALL[key] = files
+        temp.SHORT[message.from_user.id] = message.chat.id
+        
+        if settings["button"]:
+            btn = [
+                [
+                    InlineKeyboardButton(
+                        text=f"[{get_size(file['file_size'])}] {' '.join(filter(lambda x: not x.startswith('[') and not x.endswith(']'), file['file_name'].split()))}",
+                        callback_data=f"{pre}#{file['file_id']}"
+                    ),
+                ]
+                for file in files
             ]
-            for file in files
-        ]
-        btn.insert(0, 
-            [
-                InlineKeyboardButton(f'ǫᴜᴀʟɪᴛʏ', callback_data=f"qualities#{key}"),
-                InlineKeyboardButton("ᴇᴘɪsᴏᴅᴇs", callback_data=f"episodes#{key}"),
-                InlineKeyboardButton("sᴇᴀsᴏɴs",  callback_data=f"seasons#{key}")
-            ]
-        )
-        btn.insert(0, [
-            InlineKeyboardButton("𝐒𝐞𝐧𝐝 𝐀𝐥𝐥", callback_data=f"sendfiles#{key}"),
-            InlineKeyboardButton("ʟᴀɴɢᴜᴀɢᴇs", callback_data=f"languages#{key}"),
-            InlineKeyboardButton("ʏᴇᴀʀs", callback_data=f"years#{key}")
-        ])
-    else:
+            btn.insert(0, [
+                InlineKeyboardButton('QUALITY', callback_data=f"qualities#{key}"),
+                InlineKeyboardButton("EPISODES", callback_data=f"episodes#{key}"),
+                InlineKeyboardButton("SEASONS", callback_data=f"seasons#{key}")
+            ])
+            btn.insert(0, [
+                InlineKeyboardButton("Send All", callback_data=f"sendfiles#{key}"),
+                InlineKeyboardButton("LANGUAGES", callback_data=f"languages#{key}"),
+                InlineKeyboardButton("YEARS", callback_data=f"years#{key}")
+            ])
+        else:
+            btn = []
+
         btn = []
         btn.insert(0, 
             [
