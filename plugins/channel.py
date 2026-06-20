@@ -1,3 +1,4 @@
+
 from pyrogram import Client, filters
 from info import CHANNELS, MOVIE_UPDATE_CHANNEL
 from database.ia_filterdb import save_file
@@ -58,6 +59,6 @@ async def media(bot, message):
             caption=caption
         )
 
-      except Exception:
+    except Exception:
         import traceback
         traceback.print_exc()
