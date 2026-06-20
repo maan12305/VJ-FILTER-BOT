@@ -95,21 +95,28 @@ async def is_subscribed(bot, query):
 
 async def get_poster(query, bulk=False, id=False, file=None):
     if not id:
-        query = (query.strip()).lower()
-        title = query
-
-        year = re.findall(r'[1-2]\d{3}$', query, re.IGNORECASE)
-        if year:
-            year = list_to_str(year[:1])
-            title = (query.replace(year, "")).strip()
-        elif file is not None:
-            year = re.findall(r'[1-2]\d{3}', file, re.IGNORECASE)
-            if year:
-                year = list_to_str(year[:1])
+        query = query.lower()
+       
+        # Remove extension
+        query = re.sub(r'\.(mkv|mp4|avi)$', '', query)
+        
+        # Find year anywhere in filename
+        match = re.search(r'(19\d{2}|20\d{2})', query)
+        
+        if match:
+            year = match.group(1)
+            title = query.split(year)[0]
         else:
             year = None
+            title = query
+
+        title = re.sub(r'[\(\)\[\]\._-]', ' ', title).strip()
+
+        print("SEARCH TITLE:", title)
 
         movieid = imdb.search_movie(title.lower(), results=10)
+
+        print("SEARCH RESULT:", movieid)
 
         if not movieid:
             return None
