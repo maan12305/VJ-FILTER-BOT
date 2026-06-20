@@ -19,6 +19,22 @@ async def media(bot, message):
         print("FILE NAME:", media.file_name)
         
         search = media.file_name.replace(".", " ")
+        import re
+
+        search = re.sub(
+        r'[_\.-]+',
+        ' ',
+        search
+       )
+        search = re.sub(
+        r'\b(480p|720p|1080p|2160p|WEB[- ]DL|WEBRip|HDRip|BluRay|AMZN|NF|Hindi|Dual|AAC2 0|AAC|H 265|HEVC|x264|x265|The Punisher)\b',
+        '',
+        search,
+        flags=re.IGNORECASE
+       )
+
+        search = ' '.join(search.split())
+
         print("SEARCH NAME:", search)
         
         imdb = await get_poster(search)
