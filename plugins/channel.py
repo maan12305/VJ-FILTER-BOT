@@ -12,6 +12,7 @@ async def media(bot, message):
     media.caption = message.caption
 
     await save_file(media)
+    print("MOVIE UPDATE CODE TRIGGERED")
 
     try:
         imdb = await get_poster(media.file_name)
