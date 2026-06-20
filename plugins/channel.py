@@ -16,6 +16,7 @@ async def media(bot, message):
 
     try:
         imdb = await get_poster(media.file_name)
+        print("IMDB RESULT:", imdb)
 
         if not imdb:
             return
@@ -57,5 +58,6 @@ async def media(bot, message):
             caption=caption
         )
 
-    except Exception as e:
-        print(f"Movie Update Error: {e}")
+except Exception:
+        import traceback
+        traceback.print_exc()
