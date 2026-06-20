@@ -18,7 +18,10 @@ async def media(bot, message):
     try:
         print("FILE NAME:", media.file_name)
         
-        imdb = await get_poster(media.file_name)
+        search = media.file_name.replace(".", " ")
+        print("SEARCH NAME:", search)
+        
+        imdb = await get_poster(search)
         
         print("IMDB RESULT:", imdb)
 
