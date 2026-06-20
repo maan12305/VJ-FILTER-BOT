@@ -2608,14 +2608,14 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
             return await advantage_spell_chok(client, name, msg, reply_msg, ai_search)
         else:
             return await reply_msg.edit_text(
-                text="""⚜️ 𝐓𝐡𝐢𝐬 𝐌𝐨𝐯𝐢𝐞 𝐍𝐨𝐭 𝐅𝐨𝐮𝐧𝐝 ⚜️
-                Cʜᴇᴄᴋ Yᴏᴜʀ Sᴘᴇʟʟɪɴɢ Oɴ Gᴏᴏɢʟᴇ Aɴᴅ Tʀʏ Aɢᴀɪɴ ✅
-                ʀᴇǫᴜᴇsᴛ ᴛʜɪs ᴍᴏᴠɪᴇ ғʀᴏᴍ ᴀᴅᴍɪɴ""",
+                text="""⚜️ 𝐓𝐡𝐢𝐬 𝐌𝐨𝐯𝐢𝐞 𝐍𝐨𝐭 𝐅𝐨𝐮𝐧𝐝 \n\n⚜️
+                **Cʜᴇᴄᴋ Yᴏᴜʀ Sᴘᴇʟʟɪɴɢ Oɴ Gᴏᴏɢʟᴇ Aɴᴅ Tʀʏ Aɢᴀɪɴ ✅** \n\n
+                **ʀᴇǫᴜᴇsᴛ ᴛʜɪs ᴍᴏᴠɪᴇ ғʀᴏᴍ ᴀᴅᴍɪɴ** """,
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
                             InlineKeyboardButton(
-                                "📩 Request Movie",
+                                "📞 Contact Admin",
                                 url="https://t.me/Chat_With_Proffessor_bot"
                             )
                         ]
