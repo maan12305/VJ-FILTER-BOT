@@ -2603,30 +2603,29 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
             search = search.replace(".", "")
             files, offset, total_results = await get_search_results(message.chat.id ,search, offset=0, filter=True)
             settings = await get_settings(message.chat.id)
-            if not files:
-                if settings["spell_check"]:
-                    return await advantage_spell_chok(client, name, msg, reply_msg, ai_search)
-                else:
-                    return await reply_msg.edit_text(
-                        text="""⚜️ 𝐓𝐡𝐢𝐬 𝐌𝐨𝐯𝐢𝐞 𝐍𝐨𝐭 𝐅𝐨𝐮𝐧𝐝 ⚜️
-                        Cʜᴇᴄᴋ Yᴏᴜʀ Sᴘᴇʟʟɪɴɢ Oɴ Gᴏᴏɢʟᴇ Aɴᴅ Tʀʏ Aɢᴀɪɴ ✅
-                        ʀᴇǫᴜᴇsᴛ ᴛʜɪs ᴍᴏᴠɪᴇ ғʀᴏᴍ ᴀᴅᴍɪɴ""",
-                        reply_markup=InlineKeyboardMarkup(
-                            [
-                                [
-                                    InlineKeyboardButton(
-                                        "📩 Request Movie",
-                                        url="https://t.me/Chat_With_Proffessor_bot"
-                                    )
-                                ]
-                            ]
-                        )
-                    )
-            else:
-        message = msg.message.reply_to_message  # msg will be callback query
-        search, files, offset, total_results = spoll
-        settings = await get_settings(message.chat.id)
-        await msg.message.delete()
+    if not files:
+        if settings["spell_check"]:
+            return await advantage_spell_chok(client, name, msg, reply_msg, ai_search)
+        else:
+            return await reply_msg.edit_text(
+                text="""⚜️ 𝐓𝐡𝐢𝐬 𝐌𝐨𝐯𝐢𝐞 𝐍𝐨𝐭 𝐅𝐨𝐮𝐧𝐝 ⚜️
+                Cʜᴇᴄᴋ Yᴏᴜʀ Sᴘᴇʟʟɪɴɢ Oɴ Gᴏᴏɢʟᴇ Aɴᴅ Tʀʏ Aɢᴀɪɴ ✅
+                ʀᴇǫᴜᴇsᴛ ᴛʜɪs ᴍᴏᴠɪᴇ ғʀᴏᴍ ᴀᴅᴍɪɴ""",
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton(
+                                "📩 Request Movie",
+                                url="https://t.me/Chat_With_Proffessor_bot"
+                            )
+                        ]
+                    ]
+                )
+    else:                
+      message = msg.message.reply_to_message  # msg will be callback query
+      search, files, offset, total_results = spoll
+      settings = await get_settings(message.chat.id)
+      await msg.message.delete()
     pre = 'filep' if settings['file_secure'] else 'file'
     key = f"{message.chat.id}-{message.id}"
     req = message.from_user.id if message.from_user else 0
