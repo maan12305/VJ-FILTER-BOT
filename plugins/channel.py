@@ -58,6 +58,6 @@ async def media(bot, message):
             caption=caption
         )
 
-except Exception:
+      except Exception:
         import traceback
         traceback.print_exc()
