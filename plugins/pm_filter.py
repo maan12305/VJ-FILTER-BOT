@@ -2603,41 +2603,41 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
             search = search.replace(".", "")
             files, offset, total_results = await get_search_results(message.chat.id ,search, offset=0, filter=True)
             settings = await get_settings(message.chat.id)
-    if not files:
-        if settings["spell_check"]:
-            return await advantage_spell_chok(client, name, msg, reply_msg, ai_search)
-        else:            
-    not_found_msg = await reply_msg.edit_text(
-        text="""⚜️ 𝐓𝐡𝐢𝐬 𝐌𝐨𝐯𝐢𝐞 𝐍𝐨𝐭 𝐅𝐨𝐮𝐧𝐝
+if not files:
+    if settings["spell_check"]:
+        return await advantage_spell_chok(client, name, msg, reply_msg, ai_search)
+    else:
+            not_found_msg = await reply_msg.edit_text(
+                text="""⚜️ 𝐓𝐡𝐢𝐬 𝐌𝐨𝐯𝐢𝐞 𝐍𝐨𝐭 𝐅𝐨𝐮𝐧𝐝
 
-⚜️ Check Your Spelling On Google And Try Again ✅
+    ⚜️ Check Your Spelling On Google And Try Again ✅
 
-Request This Movie From Admin""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "📞 Contact Admin",
-                        url="https://t.me/Chat_With_Proffessor_bot"
-                    )
-                ]
-            ]
-        )
-    )
+    Request This Movie From Admin""",
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton(
+                                "📞 Contact Admin",
+                                url="https://t.me/Chat_With_Proffessor_bot"
+                            )
+                        ]
+                    ]
+                )
+            )
 
-    await asyncio.sleep(60)
+            await asyncio.sleep(60)
 
-    try:
-        await msg.delete()
-    except:
-        pass
+            try:
+                await msg.delete()
+            except:
+                pass
 
-    try:
-        await not_found_msg.delete()
-    except:
-        pass
+            try:
+                await not_found_msg.delete()
+            except:
+                pass
 
-    return
+            return            
     
     pre = 'filep' if settings['file_secure'] else 'file'
     key = f"{message.chat.id}-{message.id}"
