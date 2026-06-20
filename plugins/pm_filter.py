@@ -2622,7 +2622,7 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
                             ]
                         )
                     )
-      else:
+            else:
         message = msg.message.reply_to_message  # msg will be callback query
         search, files, offset, total_results = spoll
         settings = await get_settings(message.chat.id)
