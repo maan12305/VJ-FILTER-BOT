@@ -16,7 +16,10 @@ async def media(bot, message):
     print("MOVIE UPDATE CODE TRIGGERED")
 
     try:
+        print("FILE NAME:", media.file_name)
+        
         imdb = await get_poster(media.file_name)
+        
         print("IMDB RESULT:", imdb)
 
         if not imdb:
