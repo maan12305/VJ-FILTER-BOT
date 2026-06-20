@@ -2606,34 +2606,38 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
     if not files:
         if settings["spell_check"]:
             return await advantage_spell_chok(client, name, msg, reply_msg, ai_search)
-        else:
-            return await reply_msg.edit_text(
-                text="""⚜️ 𝐓𝐡𝐢𝐬 𝐌𝐨𝐯𝐢𝐞 𝐍𝐨𝐭 𝐅𝐨𝐮𝐧𝐝 \n\n⚜️
-                **Cʜᴇᴄᴋ Yᴏᴜʀ Sᴘᴇʟʟɪɴɢ Oɴ Gᴏᴏɢʟᴇ Aɴᴅ Tʀʏ Aɢᴀɪɴ ✅** \n\n
-                **ʀᴇǫᴜᴇsᴛ ᴛʜɪs ᴍᴏᴠɪᴇ ғʀᴏᴍ ᴀᴅᴍɪɴ** """,
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton(
-                                "📞 Contact Admin",
-                                url="https://t.me/Chat_With_Proffessor_bot"
-                            )
-                        ]
-                    ]
-                )
-            ) 
-            
-            await asyncio.sleep(60)
-            try:
-                await msg.delete()
-            except:
-              pass
+        else:            
+    not_found_msg = await reply_msg.edit_text(
+        text="""⚜️ 𝐓𝐡𝐢𝐬 𝐌𝐨𝐯𝐢𝐞 𝐍𝐨𝐭 𝐅𝐨𝐮𝐧𝐝
 
-            try:
-               await not_found_msg.delete()
-             except:
-               pass
-             return
+⚜️ Check Your Spelling On Google And Try Again ✅
+
+Request This Movie From Admin""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "📞 Contact Admin",
+                        url="https://t.me/Chat_With_Proffessor_bot"
+                    )
+                ]
+            ]
+        )
+    )
+
+    await asyncio.sleep(60)
+
+    try:
+        await msg.delete()
+    except:
+        pass
+
+    try:
+        await not_found_msg.delete()
+    except:
+        pass
+
+    return
     
     pre = 'filep' if settings['file_secure'] else 'file'
     key = f"{message.chat.id}-{message.id}"
