@@ -961,7 +961,7 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
         try:
             hehe = await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
             await reply_msg.delete()
-            await asyncio.sleep(60)
+            await asyncio.sleep(30)
             try:
                 await hehe.delete()
                 except:
@@ -975,7 +975,7 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
             poster = pic.replace('.jpg', "._V1_UX360.jpg") 
             hmm = await message.reply_photo(photo=poster, caption=cap, reply_markup=InlineKeyboardMarkup(btn))
             await reply_msg.delete()
-            await asyncio.sleep(60)
+            await asyncio.sleep(30)
             try:
                 await hmm.delete()
                 except:
@@ -987,7 +987,7 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
         except Exception as e:
             logger.exception(e) 
             fek = await reply_msg.edit_text(text=cap, reply_markup=InlineKeyboardMarkup(btn))
-            await asyncio.sleep(60)
+            await asyncio.sleep(30)
             try:
                 await fek.delete()
                 except:
@@ -999,9 +999,15 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
     
     else:
         fuk = await reply_msg.edit_text(text=cap, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=True)
-        await asyncio.sleep(300)
-        await fuk.delete()
-        await message.delete()
+        await asyncio.sleep(30)
+        try:
+            await fuk.delete()
+            except:
+                pass
+        try:
+            await message.delete()
+            except:
+                pass
 
 async def advantage_spell_chok(client, name, msg, reply_msg, vj_search):
     mv_id = msg.id
