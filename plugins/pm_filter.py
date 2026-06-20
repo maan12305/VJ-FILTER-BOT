@@ -2621,7 +2621,19 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
                         ]
                     ]
                 )
-            )               
+            ) 
+            
+            await asyncio.sleep(60)
+            try:
+                await msg.delete()
+            except:
+              pass
+
+            try:
+               await not_found_msg.delete()
+             except:
+               pass
+             return
     
     pre = 'filep' if settings['file_secure'] else 'file'
     key = f"{message.chat.id}-{message.id}"
