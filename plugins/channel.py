@@ -51,6 +51,11 @@ async def media(bot, message):
         search = re.sub(r'\b\d{4}\b', '', search)  # remove year like 2023
         search = re.sub(r'\b\d{4}\b', '', search)
         search = re.sub(r'[^a-zA-Z0-9 ]', ' ', search)
+        search = re.sub(r'S\d+E\d+', '', search, flags=re.IGNORECASE)
+        search = re.sub(r'\bAAC\d+\b', '', search, flags=re.IGNORECASE)
+        search = re.sub(r'\bDS4K\b', '', search, flags=re.IGNORECASE)
+        search = re.sub(r'\bAudio\b', '', search, flags=re.IGNORECASE)
+        search = re.sub(r'\b[A-Z]\b', '', search)
     
         search = ' '.join(search.split())
 
