@@ -38,10 +38,15 @@ async def media(bot, message):
         search = re.sub(r'\bS\d+\b', '', search, flags=re.IGNORECASE)
         search = re.sub(r'\bHi\b', '', search, flags=re.IGNORECASE)
         search = re.sub(r'\bmkv\b', '', search, flags=re.IGNORECASE)
+        search = re.sub(r'\b10bit\b', '', search, flags=re.IGNORECASE)
+        search = re.sub(r'\bORG\b', '', search, flags=re.IGNORECASE)
+        search = re.sub(r'\[.*?\]', '', search)
 
         search = ' '.join(search.split())
 
         print("SEARCH NAME:", search)
+        
+        print("FINAL SEARCH:", search)
         
         imdb = await get_poster(search)
         
