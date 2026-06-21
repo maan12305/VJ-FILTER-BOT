@@ -23,6 +23,8 @@ join_db = JoinReqs
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\((buttonurl|buttonalert):(?:/{0,2})(.+?)(:same)?\))")
 
 imdb = Cinemagoer() 
+print("TESTING IMDB SEARCH...")
+print(imdb.search_movie("Cruel Intentions 2"))
 TOKENS = {}
 VERIFIED = {}
 BANNED = {}
