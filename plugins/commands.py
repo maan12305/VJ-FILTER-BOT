@@ -46,6 +46,15 @@ async def start(client, message):
     if not await db.is_user_exist(message.from_user.id):
         await db.add_user(message.from_user.id, message.from_user.first_name)
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
+        if len(message.command) > 1:
+            data = message.command[1]
+            if data.startswith("search_"):
+               movie = data.replace("search_", "").replace("_", " ")
+                ai_search = True
+                reply_msg = await message.reply_text(f"<b><i>Searching For {movie} 🔍</i></b>")
+                await auto_filter( client, movie, message, reply_msg, ai_search)
+                return
+            
     if len(message.command) != 2:
         if PREMIUM_AND_REFERAL_MODE == True:
             buttons = [[
