@@ -580,11 +580,11 @@ async def verify_user(bot, userid, token):
         LOG_CHANNEL,
         f"""✅ User Completed Verification
 
-        👤 Name: {user.first_name}
-        🆔 ID: `{user.id}`
-        📛 Username: @{user.username if user.username else 'None'}
-        📅 Date: {today}
-        """
+👤 Name: {user.first_name}
+🆔 ID: `{user.id}`
+📛 Username: @{user.username if user.username else 'None'}
+📅 Date: {today}
+"""
     )
 
 async def check_verification(bot, userid):
