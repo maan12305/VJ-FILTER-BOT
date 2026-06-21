@@ -100,14 +100,17 @@ async def get_poster(query, bulk=False, id=False, file=None):
 
     url = "https://api.themoviedb.org/3/search/multi"
 
+    clean_query = re.sub(r'\b(19|20)\d{2}\b', '', query).strip()
+
     params = {
-        "api_key": API_KEY,
-        "query": query
+      "api_key": API_KEY,
+      "query": clean_query
     }
 
     print(url)
     print(params)
-
+    
+    print("CLEAN QUERY:", clean_query)
     async with aiohttp.ClientSession() as session:
         async with session.get(url, params=params) as resp:
             print("STATUS:", resp.status)
