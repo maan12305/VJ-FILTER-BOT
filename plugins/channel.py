@@ -105,7 +105,7 @@ async def media(bot, message):
                 [
                     InlineKeyboardButton(
                         "Get File 📂",
-                        url=f"https://t.me/maan_file_store_BOT?start=file_{media.file_id}"
+                        url=f"https://t.me/maan_file_store_BOT?start=search_{imdb.get('title').replace(' ', '_')}"
                     )
                 ]
             ]
