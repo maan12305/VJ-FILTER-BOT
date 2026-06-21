@@ -48,8 +48,6 @@ async def media(bot, message):
         search = re.sub(r'\b(Hindi|English|Tamil|Telugu|Malayalam|Kannada|Punjabi|Bengali|Marathi|Gujarati|Dual|Multi)\b', '', search, flags=re.IGNORECASE)
         search = re.sub(r'\bESubs\b', '', search, flags=re.IGNORECASE)
         search = re.sub(r'@[^ ]+', '', search)
-        search = re.sub(r'\b\d{4}\b', '', search)  # remove year like 2023
-        search = re.sub(r'\b\d{4}\b', '', search)
         search = re.sub(r'[^a-zA-Z0-9 ]', ' ', search)
         search = re.sub(r'S\d+E\d+', '', search, flags=re.IGNORECASE)
         search = re.sub(r'\bAAC\d+\b', '', search, flags=re.IGNORECASE)
@@ -58,6 +56,12 @@ async def media(bot, message):
         search = re.sub(r'\b[A-Z]\b', '', search)
     
         search = ' '.join(search.split())
+
+        year_match = re.search(r'\b(19\d{2}|20\d{2})\b', media.file_name)
+        year = year_match.group(1) if year_match else ""
+
+        if year:
+           search += f" {year}"
 
         print("SEARCH NAME:", search)
         
