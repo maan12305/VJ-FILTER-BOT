@@ -98,13 +98,6 @@ async def get_poster(query, bulk=False, id=False, file=None):
     API_KEY = os.getenv("TMDB_API_KEY")
     print("API KEY:", API_KEY)
 
-    print(url)
-    print(params)
-    async with session.get(url, params=params) as resp:print("STATUS:", resp.status)
-    data = await resp.json()
-
-    print("TMDB RESPONSE:", data)
-
     url = "https://api.themoviedb.org/3/search/multi"
 
     params = {
@@ -112,9 +105,14 @@ async def get_poster(query, bulk=False, id=False, file=None):
         "query": query
     }
 
+    print(url)
+    print(params)
+
     async with aiohttp.ClientSession() as session:
         async with session.get(url, params=params) as resp:
+            print("STATUS:", resp.status)
             data = await resp.json()
+            
             print("TMDB RESPONSE:", data)
 
     results = data.get("results", [])
