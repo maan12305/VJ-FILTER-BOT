@@ -130,9 +130,12 @@ async def get_poster(query, bulk=False, id=False, file=None):
         or movie.get("first_air_date", "")[:4]
     )
 
-    poster = movie.get("poster_path")
-    if poster:
-        poster = "https://image.tmdb.org/t/p/w500" + poster
+    poster_path = movie.get("backdrop_path") or movie.get("poster_path")
+
+    if poster_path:
+       poster = "https://image.tmdb.org/t/p/original" + poster_path
+    else:
+      poster = None
 
     genre_ids = movie.get("genre_ids", [])
 
