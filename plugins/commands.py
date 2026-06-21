@@ -518,6 +518,15 @@ async def start(client, message):
     user = message.from_user.id
     files_ = await get_file_details(file_id)           
     if not files_:
+        if not files_:
+            if data.startswith("search_"):
+                movie = data.replace("search_", "").replace("_", " ")
+                ai_search = True
+                reply_msg = await message.reply_text(f"<b><i>Searching For {movie} 🔍</i></b>")
+                await auto_filter(client, movie, message, reply_msg, ai_search)
+                return
+
+            
         pre, file_id = ((base64.urlsafe_b64decode(data + "=" * (-len(data) % 4))).decode("ascii")).split("_", 1)
         try:
             if not await db.has_premium_access(message.from_user.id):
