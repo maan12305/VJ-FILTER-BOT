@@ -95,17 +95,17 @@ async def media(bot, message):
         caption = f"""
 <code>{imdb.get('title', 'Unknown')}</code> ✅
 
-📆 Year - {imdb.get('year', 'N/A')}
-🎥 Genre - {imdb.get('genres', 'N/A')}
-📀 Format - {quality}
-🔊 Audio - {language}
+**📆 Year - {imdb.get('year', 'N/A')}** 
+**🎥 Genre - {imdb.get('genres', 'N/A')}**
+**📀 Format - {quality}**
+**🔊 Audio - {language}**
 """
         buttons = InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
                         "Get File 📂",
-                        url=f"https://t.me/{temp.U_NAME}?start=file_{media.file_id}"
+                        url=f"url=f"https://t.me/maan_file_store_BOT?start=file_{media.file_id}""
                     )
                 ]
             ]
