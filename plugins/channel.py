@@ -41,6 +41,9 @@ async def media(bot, message):
         search = re.sub(r'\b10bit\b', '', search, flags=re.IGNORECASE)
         search = re.sub(r'\bORG\b', '', search, flags=re.IGNORECASE)
         search = re.sub(r'\[.*?\]', '', search)
+        search = re.sub(r'\bHDTS\b', '', search, flags=re.IGNORECASE)
+        search = re.sub(r'\bEnglish\b', '', search, flags=re.IGNORECASE)
+        search = re.sub(r'\bx264\b', '', search, flags=re.IGNORECASE)
 
         search = ' '.join(search.split())
 
