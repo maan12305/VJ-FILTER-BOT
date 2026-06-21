@@ -24,8 +24,6 @@ join_db = JoinReqs
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\((buttonurl|buttonalert):(?:/{0,2})(.+?)(:same)?\))")
 
 imdb = Cinemagoer() 
-print("TESTING IMDB SEARCH...")
-print(imdb.search_movie("Cruel Intentions 2"))
 TOKENS = {}
 VERIFIED = {}
 BANNED = {}
@@ -98,6 +96,7 @@ async def is_subscribed(bot, query):
 
 async def get_poster(query, bulk=False, id=False, file=None):
     API_KEY = os.getenv("TMDB_API_KEY")
+    print("API KEY:", API_KEY)
 
     url = "https://api.themoviedb.org/3/search/multi"
 
