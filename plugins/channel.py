@@ -1,4 +1,4 @@
-
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram import Client, filters
 from info import CHANNELS, MOVIE_UPDATE_CHANNEL
 from database.ia_filterdb import save_file
@@ -100,11 +100,22 @@ async def media(bot, message):
 📀 Format - {quality}
 🔊 Audio - {language}
 """
+        buttons = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "Get File 📂",
+                        url=f"https://t.me/{temp.U_NAME}?start=file_{media.file_id}"
+                    )
+                ]
+            ]
+        )
 
         await bot.send_photo(
             chat_id=MOVIE_UPDATE_CHANNEL,
             photo=imdb.get("poster"),
             caption=caption
+            reply_markup=buttons
         )
 
     except Exception:
