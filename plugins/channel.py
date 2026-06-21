@@ -48,12 +48,9 @@ async def media(bot, message):
         search = re.sub(r'\bESubs\b', '', search, flags=re.IGNORECASE)
         search = re.sub(r'@[^ ]+', '', search)
         search = re.sub(r'\b\d{4}\b', '', search)  # remove year like 2023
-        search = re.sub(r'\b\d+\b', '', search)    # remove standalone numbers like 5
-        match = re.search(r'(.+?)(19\d{2}|20\d{2}|21\d{2})', search)
-
-        if match:
-           search = f"{match.group(1).strip()} {match.group(2)}"
-
+        search = re.sub(r'\b\d{4}\b', '', search)
+        search = re.sub(r'[^a-zA-Z0-9 ]', ' ', search)
+    
         search = ' '.join(search.split())
 
         print("SEARCH NAME:", search)
