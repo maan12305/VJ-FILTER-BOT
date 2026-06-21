@@ -44,6 +44,7 @@ async def media(bot, message):
         search = re.sub(r'\bHDTS\b', '', search, flags=re.IGNORECASE)
         search = re.sub(r'\bEnglish\b', '', search, flags=re.IGNORECASE)
         search = re.sub(r'\bx264\b', '', search, flags=re.IGNORECASE)
+        search = re.sub(r'\b(Hindi|English|Tamil|Telugu|Malayalam|Kannada|Punjabi|Bengali|Marathi|Gujarati|Dual|Multi)\b', '', search, flags=re.IGNORECASE)
 
         search = ' '.join(search.split())
 
