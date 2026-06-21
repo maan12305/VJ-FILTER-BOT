@@ -47,6 +47,8 @@ async def media(bot, message):
         search = re.sub(r'\b(Hindi|English|Tamil|Telugu|Malayalam|Kannada|Punjabi|Bengali|Marathi|Gujarati|Dual|Multi)\b', '', search, flags=re.IGNORECASE)
         search = re.sub(r'\bESubs\b', '', search, flags=re.IGNORECASE)
         search = re.sub(r'@[^ ]+', '', search)
+        search = re.sub(r'\b\d{4}\b', '', search)  # remove year like 2023
+        search = re.sub(r'\b\d+\b', '', search)    # remove standalone numbers like 5
 
         search = ' '.join(search.split())
 
