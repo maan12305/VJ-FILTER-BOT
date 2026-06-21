@@ -32,6 +32,12 @@ async def media(bot, message):
         search,
         flags=re.IGNORECASE
        )
+        
+        search = re.sub(r'\[@.*?\]', '', search)
+        search = re.sub(r'\(.*?\)', '', search)
+        search = re.sub(r'\bS\d+\b', '', search, flags=re.IGNORECASE)
+        search = re.sub(r'\bHi\b', '', search, flags=re.IGNORECASE)
+        search = re.sub(r'\bmkv\b', '', search, flags=re.IGNORECASE)
 
         search = ' '.join(search.split())
 
