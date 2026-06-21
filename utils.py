@@ -107,20 +107,11 @@ async def get_poster(query, bulk=False, id=False, file=None):
       "query": clean_query
     }
 
-    print(url)
-    print(params)
-    
-    print("CLEAN QUERY:", clean_query)
     async with aiohttp.ClientSession() as session:
         async with session.get(url, params=params) as resp:
-            print("STATUS:", resp.status)
             data = await resp.json()
-            
-            print("TMDB RESPONSE:", data)
 
     results = data.get("results", [])
-
-    print("SEARCH RESULT:", results)
 
     if not results:
         return None
@@ -166,6 +157,8 @@ async def get_poster(query, bulk=False, id=False, file=None):
         "plot": movie.get("overview"),
         "rating": str(movie.get("vote_average"))
     }
+   
+    print("RETURNING:", result)
 
 async def broadcast_messages(user_id, message):
     try:
