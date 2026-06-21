@@ -114,7 +114,7 @@ async def media(bot, message):
         await bot.send_photo(
             chat_id=MOVIE_UPDATE_CHANNEL,
             photo=imdb.get("poster"),
-            caption=caption
+            caption=caption‚
             reply_markup=buttons
         )
 
