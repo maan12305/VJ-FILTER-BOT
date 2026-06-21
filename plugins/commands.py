@@ -517,8 +517,8 @@ async def start(client, message):
             return
     user = message.from_user.id
     files_ = await get_file_details(file_id)           
-        if not files_:
-            if data.startswith("search_"):
+          if not files_:
+             if data.startswith("search_"):
                 movie = data.replace("search_", "").replace("_", " ")
                 ai_search = True
                 reply_msg = await message.reply_text(f"<b><i>Searching For {movie} 🔍</i></b>")
