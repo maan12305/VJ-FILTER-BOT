@@ -113,12 +113,18 @@ async def get_poster(query, bulk=False, id=False, file=None):
 
     results = data.get("results", [])
 
+    print("TMDB RESPONSE:", data)
+    print("SEARCH RESULT:", results)
+
     if not results:
         return None
 
     movie = results[0]
 
     title = movie.get("title") or movie.get("name")
+
+    print("TITLE:", title)
+    
     year = (
         movie.get("release_date", "")[:4]
         or movie.get("first_air_date", "")[:4]
