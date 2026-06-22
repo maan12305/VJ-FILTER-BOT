@@ -27,7 +27,7 @@ async def media(bot, message):
         search
        )
         search = re.sub(
-        r'\b(480p|720p|1080p|2160p|WEB[- ]DL|WEBRip|HC|Ci|Esub|TSRip|AVC|Cinevood|2.0|Web|HDTC|Season|Amazon|Audio|Aud|HDRi|Seri|Series|Web|HDTC|Audio|HDR|HDRip|HQ|BluRay|AMZN|NF|Hindi|Dual|AAC2 0|AAC|H 265|HEVC|x264|x265|The Punisher)\b','',search,flags=re.IGNORECASE)
+        r'\b(480p|720p|1080p|2160p|WEB[- ]DL|WEBRip|HC|Ci|Cin|Esub|TSRip|AVC|Cinevood|2.0|Web|HDTC|Season|Amazon|Audio|Aud|HDRi|Seri|Series|Web|HDTC|Audio|HDR|HDRip|HQ|BluRay|AMZN|NF|Hindi|Dual|AAC2 0|AAC|H 265|HEVC|x264|x265|The Punisher)\b','',search,flags=re.IGNORECASE)
         
         search = re.sub(r'\[@.*?\]', '', search)
         search = re.sub(r'\(.*?\)', '', search)
@@ -56,9 +56,8 @@ async def media(bot, message):
         year_match = re.search(r'\b(19\d{2}|20\d{2})\b', media.file_name)
         year = year_match.group(1) if year_match else ""
 
-        if year:
+        if year and year not in search:
            search += f" {year}"
-
         print("SEARCH NAME:", search)
         
         print("FINAL SEARCH:", search)
