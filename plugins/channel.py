@@ -25,13 +25,22 @@ async def media(bot, message):
         filename = re.sub(r'\[@.*?\]', '', filename)      # [@ClipmateZone]
         filename = re.sub(r'\[.*?\]', '', filename)       # [Hindi]
         filename = re.sub(r'[_\.-]+', ' ', filename)
+        # Remove S04E09
+        filename = re.sub(r'\bS\d{1,2}E\d{1,2}\b','',filename,flags=re.IGNORECASE)
+        # Remove Episode 09 / Episode-09
+        filename = re.sub(r'\bEpisode\s*-?\s*\d+\b','',filename,flags=re.IGNORECASE)
+        # Remove Season 4
+        filename = re.sub(r'\bSeason\s*\d+\b','',filename,flags=re.IGNORECASE)
+        # Remove S04 / E09
+        filename = re.sub(r'\bS\d{1,2}\b','',filename,flags=re.IGNORECASE)
+        filename = re.sub(r'\bE\d{1,2}\b','',filename,flags=re.IGNORECASE)
         # keep year but remove brackets
         filename = filename.replace("(", " ")
         filename = filename.replace(")", " ")
         filename = ' '.join(filename.split())
 
         # Remove common junk words
-        filename = re.sub(r'\b(Movie|HDTC|HDTS|HDRip|WEBRip|WEB-DL|BluRay|BRRip|DVDRip|ORG|Hindi|English|Tamil|Telugu|Malayalam|Marathi|Punjabi|Kannada|Bengali|Gujarati|Dual|Multi|AAC|DDP|HEVC|x264|x265|ESub|ESubs|HC|HQ|CAM|TS|TC|Cin|Cinevood|720p|1080p|2160p|4K)\b','',filename,flags=re.IGNORECASE
+        filename = re.sub(r'\b(Movie|HDTC|HDTS|HDRip|W|HQS|Proper|Remux|Uncut|Extended|Complete|NF|AMZN|DSNP|SonyLIV|ZEE5|JioHotstar|WEBRip|WEB-DL|BluRay|BRRip|DVDRip|ORG|Hindi|English|Tamil|Telugu|Malayalam|Marathi|Punjabi|Kannada|Bengali|Gujarati|Dual|Multi|AAC|DDP|HEVC|x264|x265|ESub|ESubs|HC|HQ|CAM|TS|TC|Cin|Cinevood|720p|1080p|2160p|4K)\b','',filename,flags=re.IGNORECASE
                          )
 
         filename = ' '.join(filename.split())
@@ -46,6 +55,10 @@ async def media(bot, message):
         else:
             title = filename
             search = filename
+
+        print("CLEANED FILENAME:", filename)
+        print("TITLE:", title)
+        print("YEAR:", year if match else "Not Found")
 
         print("SEARCH NAME:", search)
         print("FINAL SEARCH:", search)
