@@ -157,7 +157,7 @@ async def get_poster(query, bulk=False, id=False, file=None):
         10762: "Kids",
         10751: "Family",
         10764: "Reality",
-        10770: "TV Movie"
+        10770: "TV Movie",
         10402: "Music",
         10749: "Romance",
         878: "Sci-Fi",
