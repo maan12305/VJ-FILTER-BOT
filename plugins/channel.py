@@ -40,7 +40,7 @@ async def media(bot, message):
         filename = ' '.join(filename.split())
 
         # Remove common junk words
-        filename = re.sub(r'\b(Movie|HDTC|HDTS|HDRip|W|HQS|Proper|Remux|Uncut|Extended|Complete|NF|AMZN|DSNP|SonyLIV|ZEE5|JioHotstar|WEBRip|WEB-DL|BluRay|BRRip|DVDRip|ORG|Hindi|English|Tamil|Telugu|Malayalam|Marathi|Punjabi|Kannada|Bengali|Gujarati|Dual|Multi|AAC|DDP|HEVC|x264|x265|ESub|ESubs|HC|HQ|CAM|TS|TC|Cin|Cinevood|720p|1080p|2160p|4K)\b','',filename,flags=re.IGNORECASE
+        filename = re.sub(r'\b(Movie|HDTC|HDTS|HDRip|HQS|Proper|Remux|Uncut|Extended|Complete|NF|AMZN|DSNP|SonyLIV|ZEE5|JioHotstar|WEBRip|WEB-DL|BluRay|BRRip|DVDRip|ORG|Hindi|English|Tamil|Telugu|Malayalam|Marathi|Gujarati|Japnese|Punjabi|Kannada|Bengali|Gujarati|Dual|Multi|AAC|DDP|HEVC|x264|x265|ESub|ESubs|HC|HQ|CAM|TS|TC|Cin|Cinevood|720p|1080p|2160p|4K)\b','',filename,flags=re.IGNORECASE
                          )
 
         filename = ' '.join(filename.split())
