@@ -22,13 +22,17 @@ async def media(bot, message):
         
         filename = media.file_name.rsplit(".", 1)[0]
         
+        filename = re.sub(r'\[@.*?\]', '', filename)      # [@ClipmateZone]
+        filename = re.sub(r'\[.*?\]', '', filename)       # [Hindi]
         filename = re.sub(r'[_\.-]+', ' ', filename)
-        filename = re.sub(r'[\(\)\[\]]', '', filename)
+        # keep year but remove brackets
+        filename = filename.replace("(", " ")
+        filename = filename.replace(")", " ")
         filename = ' '.join(filename.split())
 
         # Remove common junk words
-        filename = re.sub(r'\b(Movie|HDTC|HDTS|HDRip|WEBRip|WEB-DL|BluRay|Hindi|English|Tamil|Telugu|Malayalam|Marathi|Punjabi|AAC|x264|x265|HEVC|ESub|HC)\b','',filename,flags=re.IGNORECASE
-       )
+        filename = re.sub(r'\b(Movie|HDTC|HDTS|HDRip|WEBRip|WEB-DL|BluRay|BRRip|DVDRip|ORG|Hindi|English|Tamil|Telugu|Malayalam|Marathi|Punjabi|Kannada|Bengali|Gujarati|Dual|Multi|AAC|DDP|HEVC|x264|x265|ESub|ESubs|HC|HQ|CAM|TS|TC|Cin|Cinevood|720p|1080p|2160p|4K)\b','',filename,flags=re.IGNORECASE
+                         )
 
         filename = ' '.join(filename.split())
 
@@ -36,7 +40,7 @@ async def media(bot, message):
        )
 
         if match:
-            title = match.group(1).strip()
+            title = re.sub(r'[^a-zA-Z0-9 ]', '', match.group(1)).strip()
             year = match.group(2)
             search = f"{title} {year}"
         else:
@@ -98,13 +102,21 @@ async def media(bot, message):
             ]
         )
 
-        await bot.send_photo(
-            chat_id=MOVIE_UPDATE_CHANNEL,
-            photo=imdb.get("poster"),
-            caption=caption,
-            reply_markup=buttons
-        )
-
+        poster = imdb.get("poster")
+        if poster:
+            await bot.send_photo(
+                chat_id=MOVIE_UPDATE_CHANNEL,
+                photo=poster,
+                caption=caption,
+                reply_markup=buttons
+            )
+        else:
+            await bot.send_message(
+                chat_id=MOVIE_UPDATE_CHANNEL,
+                text=caption,
+                reply_markup=buttons
+            )
+        
     except Exception:
         import traceback
         traceback.print_exc()
