@@ -133,10 +133,10 @@ async def get_poster(query, bulk=False, id=False, file=None):
             if item_year == query_year:
                 movie = item
                 break
-            else:
-                movie = results[0]
-            else:
-                movie = results[0]  
+         else:
+            movie = results[0]
+      else:
+         movie = results[0]
 
     title = movie.get("title") or movie.get("name")
 
