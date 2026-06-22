@@ -17,55 +17,42 @@ async def media(bot, message):
 
     try:
         print("FILE NAME:", media.file_name)
-        
-        search = media.file_name.replace(".", " ")
+
         import re
+        
+        filename = media.file_name.rsplit(".", 1)[0]
+        
+        filename = re.sub(r'[_\.-]+', ' ', filename)
+        filename = ' '.join(filename.split())
 
-        search = re.sub(
-        r'[_\.-]+',
-        ' ',
-        search
+        # Remove common junk words
+        filename = re.sub(r'\b(Movie|HDTC|HDTS|HDRip|WEBRip|WEB-DL|BluRay|Hindi|English|Tamil|Telugu|Malayalam|Marathi|Punjabi|AAC|x264|x265|HEVC|ESub|HC)\b','',filename,flags=re.IGNORECASE
        )
-        search = re.sub(
-        r'\b(480p|720p|1080p|2160p|WEB[- ]DL|WEBRip|HC|Ci|Cin|Esub|TSRip|AVC|Cinevood|2.0|Web|HDTC|Season|Amazon|Audio|Aud|HDRi|Seri|Series|Web|HDTC|Audio|HDR|HDRip|HQ|BluRay|AMZN|NF|Hindi|Dual|AAC2 0|AAC|H 265|HEVC|x264|x265|The Punisher)\b','',search,flags=re.IGNORECASE)
-        
-        search = re.sub(r'\[@.*?\]', '', search)
-        search = re.sub(r'\(.*?\)', '', search)
-        search = re.sub(r'\bS\d+\b', '', search, flags=re.IGNORECASE)
-        search = re.sub(r'\bHi\b', '', search, flags=re.IGNORECASE)
-        search = re.sub(r'\bHE\b', '', search, flags=re.IGNORECASE)
-        search = re.sub(r'\bmkv\b', '', search, flags=re.IGNORECASE)
-        search = re.sub(r'\b10bit\b', '', search, flags=re.IGNORECASE)
-        search = re.sub(r'\bORG\b', '', search, flags=re.IGNORECASE)
-        search = re.sub(r'\[.*?\]', '', search)
-        search = re.sub(r'\bHDTS\b', '', search, flags=re.IGNORECASE)
-        search = re.sub(r'\bEnglish\b', '', search, flags=re.IGNORECASE)
-        search = re.sub(r'\bx264\b', '', search, flags=re.IGNORECASE)
-        search = re.sub(r'\b(Hindi|English|Tamil|Telugu|Malayalam|French|Kannada|Punjabi|Bengali|Marathi|Gujarati|Dual|Multi)\b', '', search, flags=re.IGNORECASE)
-        search = re.sub(r'\bESubs\b', '', search, flags=re.IGNORECASE)
-        search = re.sub(r'@[^ ]+', '', search)
-        search = re.sub(r'[^a-zA-Z0-9 ]', ' ', search)
-        search = re.sub(r'S\d+E\d+', '', search, flags=re.IGNORECASE)
-        search = re.sub(r'\bAAC\d+\b', '', search, flags=re.IGNORECASE)
-        search = re.sub(r'\bDS4K\b', '', search, flags=re.IGNORECASE)
-        search = re.sub(r'\bAudio\b', '', search, flags=re.IGNORECASE)
-        search = re.sub(r'\b[A-Z]\b', '', search)
-    
-        search = ' '.join(search.split())
 
-        year_match = re.search(r'\b(19\d{2}|20\d{2})\b', media.file_name)
-        year = year_match.group(1) if year_match else ""
+        filename = ' '.join(filename.split())
 
-        if year and year not in search:
-           search += f" {year}"
+        match = re.search(r'^(.*?)\b(19\d{2}|20\d{2})\b',filename,flags=re.IGNORECASE
+       )
+
+        if match:
+            title = match.group(1).strip()
+            year = match.group(2)
+            search = f"{title} {year}"
+        else:
+            title = filename
+            search = filename
+
         print("SEARCH NAME:", search)
-        
         print("FINAL SEARCH:", search)
-        
-        imdb = await get_poster(search)
-        
-        print("IMDB RESULT:", imdb)
 
+        imdb = await get_poster(search)
+
+        if not imdb and match:
+            print("TRYING TITLE ONLY SEARCH:", title)
+            imdb = await get_poster(title)
+
+        print("IMDB RESULT:", imdb)
+                     
         if not imdb:
             return
 
