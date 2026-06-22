@@ -148,6 +148,17 @@ async def get_poster(query, bulk=False, id=False, file=None):
         18: "Drama",
         14: "Fantasy",
         27: "Horror",
+        9648: "Mystery",
+        10752: "War",
+        36: "History",
+        10765: "Sci-Fi & Fantasy",
+        99: "Documentary",
+        10759: "Action & Adventure",
+        10762: "Kids",
+        10751: "Family",
+        10764: "Reality",
+        10770: "TV Movie"
+        10402: "Music",
         10749: "Romance",
         878: "Sci-Fi",
         53: "Thriller"
