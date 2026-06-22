@@ -27,7 +27,7 @@ async def media(bot, message):
         search
        )
         search = re.sub(
-        r'\b(480p|720p|1080p|2160p|WEB[- ]DL|WEBRip|TSRip|AVC|Cinevood|2.0|Web|HDTC|Audio|Aud|HDRi|Seri|Series|Web|HDTC|Audio|HDR|HDRip|HQ|BluRay|AMZN|NF|Hindi|Dual|AAC2 0|AAC|H 265|HEVC|x264|x265|The Punisher)\b','',search,flags=re.IGNORECASE)
+        r'\b(480p|720p|1080p|2160p|WEB[- ]DL|WEBRip|TSRip|AVC|Cinevood|2.0|Web|HDTC|Season|Amazon|Audio|Aud|HDRi|Seri|Series|Web|HDTC|Audio|HDR|HDRip|HQ|BluRay|AMZN|NF|Hindi|Dual|AAC2 0|AAC|H 265|HEVC|x264|x265|The Punisher)\b','',search,flags=re.IGNORECASE)
         
         search = re.sub(r'\[@.*?\]', '', search)
         search = re.sub(r'\(.*?\)', '', search)
