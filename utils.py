@@ -118,23 +118,9 @@ async def get_poster(query, bulk=False, id=False, file=None):
 
     if not results:
         return None
-       
-        query_year = re.search(r'\b(19\d{2}|20\d{2})\b', query)
-        
-        if query_year:
-           query_year = query_year.group(1)
-           
-           for item in results:
-             item_year = (item.get("release_date", "")[:4] or item.get("first_air_date", "")[:4])
-             
-             if item_year == query_year:
-                movie = item
-                break
-            else:
-               movie = results[0]
-           else:
-             movie = results[0] 
-    
+
+    movie = results[0]
+
     title = movie.get("title") or movie.get("name")
 
     print("TITLE:", title)
