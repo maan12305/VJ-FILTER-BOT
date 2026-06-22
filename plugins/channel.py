@@ -23,6 +23,7 @@ async def media(bot, message):
         filename = media.file_name.rsplit(".", 1)[0]
         
         filename = re.sub(r'[_\.-]+', ' ', filename)
+        filename = re.sub(r'[\(\)\[\]]', '', filename)
         filename = ' '.join(filename.split())
 
         # Remove common junk words
