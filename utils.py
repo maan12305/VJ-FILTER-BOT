@@ -132,12 +132,14 @@ async def get_poster(query, bulk=False, id=False, file=None):
         for item in results:
             item_year = (item.get("release_date", "")[:4] or item.get("first_air_date", "")[:4])
 
-    if item_year == target_year:
-        movie = item
-        break
+            if item_year == target_year:
+               movie = item
+               break
 
     if not movie:
         movie = results[0]
+
+    print("SELECTED MOVIE:", movie.get("title") or movie.get("name"))
 
     title = movie.get("title") or movie.get("name")
     
