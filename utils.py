@@ -102,6 +102,9 @@ async def get_poster(query, bulk=False, id=False, file=None):
 
     clean_query = re.sub(r'\b(19|20)\d{2}\b', '', query).strip()
 
+    year_match = re.search(r'\b(19|20)\d{2}\b', query)
+    target_year = year_match.group(0) if year_match else None
+
     params = {
       "api_key": API_KEY,
       "query": clean_query
@@ -113,17 +116,33 @@ async def get_poster(query, bulk=False, id=False, file=None):
 
     results = data.get("results", [])
 
+    results = [
+      x for x in results
+      if x.get("media_type") in ["movie", "tv"]]
+
     print("TMDB RESPONSE:", data)
     print("SEARCH RESULT:", results)
 
     if not results:
         return None
 
-    movie = results[0]
+    movie = None
+
+    if target_year:
+        for item in results:
+            item_year = (item.get("release_date", "")[:4] or item.get("first_air_date", "")[:4])
+
+    if item_year == target_year:
+        movie = item
+        break
+
+    if not movie:
+        movie = results[0]
 
     title = movie.get("title") or movie.get("name")
 
     print("TITLE:", title)
+    print("SELECTED YEAR:", year)
     
     year = (
         movie.get("release_date", "")[:4]
