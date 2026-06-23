@@ -140,14 +140,14 @@ async def get_poster(query, bulk=False, id=False, file=None):
         movie = results[0]
 
     title = movie.get("title") or movie.get("name")
-
-    print("TITLE:", title)
-    print("SELECTED YEAR:", year)
     
     year = (
         movie.get("release_date", "")[:4]
         or movie.get("first_air_date", "")[:4]
     )
+
+    print("TITLE:", title)
+    print("SELECTED YEAR:", year)
 
     poster_path = movie.get("backdrop_path") or movie.get("poster_path")
 
