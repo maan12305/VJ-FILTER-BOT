@@ -605,6 +605,7 @@ async def verify_user(bot, userid, token):
         await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
     TOKENS[user.id] = {token: True}
     await db.save_verification(user.id)
+    await bot.send_message(LOG_CHANNEL,f"DEBUG: Saved verification for {user.id}")
     tz = pytz.timezone('Asia/Kolkata')
     today = date.today()
     VERIFIED[user.id] = str(today)
