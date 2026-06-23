@@ -390,11 +390,7 @@ async def start(client, message):
         token = data.split("-", 3)[2]
         if str(message.from_user.id) != str(userid):
             return await message.reply_text(text="<b>ɪɴᴠᴀʟɪᴅ ʟɪɴᴋ ᴏʀ ᴇxᴘɪʀᴇᴅ ʟɪɴᴋ</b>", protect_content=True)
-
-        await client.send_message(LOG_CHANNEL,f"VERIFY CLICKED | userid={userid} | token={token}")
-        
         is_valid = await check_token(client, userid, token)
-        
         if is_valid == True:
             text = "<b>ʜᴇʏ {} 👋,\n\nʏᴏᴜ ʜᴀᴠᴇ ᴄᴏᴍᴘʟᴇᴛᴇᴅ ᴛʜᴇ ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ...\n\nɴᴏᴡ ʏᴏᴜ ʜᴀᴠᴇ ᴜɴʟɪᴍɪᴛᴇᴅ ᴀᴄᴄᴇss ᴛɪʟʟ ᴛᴏᴅᴀʏ ɴᴏᴡ ᴇɴᴊᴏʏ\n\n</b>"
             if PREMIUM_AND_REFERAL_MODE == True:
