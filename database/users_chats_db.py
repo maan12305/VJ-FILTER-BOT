@@ -1,7 +1,7 @@
 # Don't Remove Credit @VJ_Bots
 # Subscribe YouTube Channel For Amazing Bot @Tech_VJ
 # Ask Doubt on telegram @KingVJ01
-
+from datetime import date
 import re
 from pymongo.errors import DuplicateKeyError
 import motor.motor_asyncio
@@ -97,7 +97,11 @@ class Database:
     async def add_user(self, id, name):
         user = self.new_user(id, name)
         await self.col.insert_one(user)
-    
+
+    async def save_verification(self, user_id):
+        today = str(date.today())
+        await self.col.update_one({"id": int(user_id)},{"$set": {"verified_date": today}},upsert=True)
+            
     async def is_user_exist(self, id):
         user = await self.col.find_one({'id':int(id)})
         return bool(user)
