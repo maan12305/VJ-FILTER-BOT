@@ -66,6 +66,7 @@ class Database:
         self.grp = self.db.groups
         self.users = self.db.uersz
         self.bot = self.db.clone_bots
+        self.verify = self.db.verify
 
 
     def new_user(self, id, name):
@@ -237,6 +238,33 @@ class Database:
             
     async def update_user(self, user_data):
         await self.users.update_one({"id": user_data["id"]}, {"$set": user_data}, upsert=True)
+
+    async def save_verification(self, user_id):
+        expiry_time = datetime.datetime.now() + datetime.timedelta(days=1)
+       
+        await self.verify.update_one(
+            {"id": user_id},
+            {
+                "$set": {
+                    "id": user_id,
+                    "expiry_time": expiry_time
+                }
+               },
+                upsert=True
+              )
+
+    async def is_verified(self, user_id):
+        user = await self.verify.find_one({"id": user_id})
+
+        if not user:
+            return False
+
+        expiry_time = user.get("expiry_time")
+
+        if expiry_time and expiry_time > datetime.datetime.now():
+            return True
+            
+        return False
 
     async def has_premium_access(self, user_id):
         user_data = await self.get_user(user_id)
