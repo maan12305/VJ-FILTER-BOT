@@ -19,61 +19,12 @@ sec_client = MongoClient(SEC_FILE_DB_URI)
 sec_db = sec_client[DATABASE_NAME]
 sec_col = sec_db[COLLECTION_NAME]
 
-DELETE_QUALITIES = [
-    "CAMRIP",
-    "HDTS",
-    "HDTC",
-    "DVDRIP"
-]
-
-BETTER_QUALITIES = [
-    "HDRIP",
-    "WEBRIP",
-    "WEB-DL",
-    "WEBDL",
-    "BLURAY",
-    "IMAX"
-]
-
-def get_quality(name):
-    name = name.upper()
-
-    for q in DELETE_QUALITIES + BETTER_QUALITIES:
-        if q in name:
-            return q
-        
-    return None
-
-def remove_old_low_quality(movie_name):
-    regex = re.compile(re.escape(movie_name), re.IGNORECASE)
-
-    for collection in [col, sec_col]:
-        files = list(collection.find({"file_name": regex}))
-
-        for file in files:
-            quality = get_quality(file.get("file_name", ""))
-
-            if quality in DELETE_QUALITIES:
-                collection.delete_one({"_id": file["_id"]})
-                print(f"Deleted old quality: {file['file_name']}")
 
 async def save_file(media):
     """Save file in the database."""
     
     file_id = unpack_new_file_id(media.file_id)
     file_name = clean_file_name(media.file_name)
-    quality = get_quality(file_name)
-    
-    if quality in BETTER_QUALITIES:
-        movie_name = file_name
-
-        for q in DELETE_QUALITIES + BETTER_QUALITIES:
-            movie_name = re.sub(q, "", movie_name, flags=re.IGNORECASE)
-
-        movie_name = movie_name.strip()
-
-        remove_old_low_quality(movie_name)
-    
     new_file_name = f" {file_name}"
     
     file = {
