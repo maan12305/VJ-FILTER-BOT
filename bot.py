@@ -37,6 +37,7 @@ loop = asyncio.get_event_loop()
 async def start():
     print('\n')
     print('Initalizing Your Bot')
+    await db.verify.create_index("expiry_time",expireAfterSeconds=0)
     bot_info = await TechVJBot.get_me()
     await initialize_clients()
     for name in files:
