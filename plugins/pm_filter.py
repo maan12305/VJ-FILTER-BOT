@@ -2607,7 +2607,7 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
         if settings["spell_check"]:
             return await advantage_spell_chok(client, name, msg, reply_msg, ai_search)
         else:
-            await client.send_message(REQUEST_CHANNEL_ID,f"""🎬 <b>New Movie Request</b>
+            await client.send_message(REQST_CHANNEL,f"""🎬 <b>New Movie Request</b>
             
             👤 <b>User:</b> {message.from_user.mention}
             🆔 <b>User ID:</b> <code>{message.from_user.id}</code>
