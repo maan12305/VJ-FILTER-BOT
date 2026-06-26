@@ -310,7 +310,30 @@ async def start(client, message):
                 continue
             await asyncio.sleep(1) 
         await sts.delete()
-        k = await client.send_message(chat_id = message.from_user.id, text=f"<b> Movie Update Channel \n\n ❤️‍🔥 @movie_update_channels </b>")
+        k = await msg.reply(
+            text="<b>ᴊᴏɪɴ ᴏᴜʀ ᴏᴛʜᴇʀ ᴄʜᴀɴɴᴇʟ ᴀʟꜱᴏ ☟</b>",
+            reply_markup=InlineKeyboardMarkup(
+              [
+                [
+                  InlineKeyboardButton(
+                     "📰 Updates",
+                     url="https://t.me/movie_update_channels"
+                  ),
+                  InlineKeyboardButton(
+                     "🔞 Viral Videos",
+                     url="https://t.me/+r7R8Znt7ogNkZWFl"
+                  )
+                ],
+              [
+                InlineKeyboardButton(
+                   "🎬 Movie Group",
+                   url="https://t.me/maan_movies2"
+                )
+              ]
+            ]
+          )
+        )
+            
        # await asyncio.sleep(600)
        # for x in filesarr:
           #  await x.delete()
@@ -378,7 +401,30 @@ async def start(client, message):
             filesarr.append(p)
             await asyncio.sleep(1)
         await sts.delete()
-        k = await client.send_message(chat_id = message.from_user.id, text=f"<b> Movie Update Channel \n\n ❤️‍🔥 @movie_update_channels </b>")
+        k = await msg.reply(
+            text="<b>ᴊᴏɪɴ ᴏᴜʀ ᴏᴛʜᴇʀ ᴄʜᴀɴɴᴇʟ ᴀʟꜱᴏ ☟</b>",
+            reply_markup=InlineKeyboardMarkup(
+              [
+                [
+                  InlineKeyboardButton(
+                     "📰 Updates",
+                     url="https://t.me/movie_update_channels"
+                  ),
+                  InlineKeyboardButton(
+                     "🔞 Viral Videos",
+                     url="https://t.me/+r7R8Znt7ogNkZWFl"
+                  )
+                ],
+              [
+                InlineKeyboardButton(
+                   "🎬 Movie Group",
+                   url="https://t.me/maan_movies2"
+                )
+              ]
+            ]
+          )
+        )
+        
         #await asyncio.sleep(600)
         #for x in filesarr:
           #  await x.delete()
@@ -485,8 +531,30 @@ async def start(client, message):
                 protect_content=True if pre == 'allfilesp' else False,
                 reply_markup=reply_markup
             )
-            filesarr.append(msg)
-        k = await client.send_message(chat_id = message.from_user.id, text=f"<b> Movie Update Channel \n\n ❤️‍🔥 @movie_update_channels </b>")
+            filesarr.append(msg) 
+            k = await msg.reply(
+            text="<b>ᴊᴏɪɴ ᴏᴜʀ ᴏᴛʜᴇʀ ᴄʜᴀɴɴᴇʟ ᴀʟꜱᴏ ☟</b>",
+            reply_markup=InlineKeyboardMarkup(
+              [
+                [
+                  InlineKeyboardButton(
+                     "📰 Updates",
+                     url="https://t.me/movie_update_channels"
+                  ),
+                  InlineKeyboardButton(
+                     "🔞 Viral Videos",
+                     url="https://t.me/+r7R8Znt7ogNkZWFl"
+                  )
+                ],
+              [
+                InlineKeyboardButton(
+                   "🎬 Movie Group",
+                   url="https://t.me/maan_movies2"
+                )
+              ]
+            ]
+          )
+        )
        # await asyncio.sleep(600)
       #  for x in filesarr:
            # await x.delete()
@@ -567,7 +635,29 @@ async def start(client, message):
                     return
             await msg.edit_caption(caption=f_caption)
             btn = [[InlineKeyboardButton("✅ ɢᴇᴛ ғɪʟᴇ ᴀɢᴀɪɴ ✅", callback_data=f'del#{file_id}')]]
-            k = await msg.reply(text=f"<b> Movie Update Channel \n\n ❤️‍🔥 @movie_update_channels </b>")
+            k = await msg.reply(
+            text="<b>ᴊᴏɪɴ ᴏᴜʀ ᴏᴛʜᴇʀ ᴄʜᴀɴɴᴇʟ ᴀʟꜱᴏ ☟</b>",
+            reply_markup=InlineKeyboardMarkup(
+              [
+                [
+                  InlineKeyboardButton(
+                     "📰 Updates",
+                     url="https://t.me/movie_update_channels"
+                  ),
+                  InlineKeyboardButton(
+                     "🔞 Viral Videos",
+                     url="https://t.me/+r7R8Znt7ogNkZWFl"
+                  )
+                ],
+              [
+                InlineKeyboardButton(
+                   "🎬 Movie Group",
+                   url="https://t.me/maan_movies2"
+                )
+              ]
+            ]
+          )
+        )
           #  await asyncio.sleep(600)
            # await msg.delete()
            # await k.edit_text("<b>✅ ʏᴏᴜʀ ᴍᴇssᴀɢᴇ ɪs sᴜᴄᴄᴇssғᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ ɪғ ʏᴏᴜ ᴡᴀɴᴛ ᴀɢᴀɪɴ ᴛʜᴇɴ ᴄʟɪᴄᴋ ᴏɴ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ</b>",reply_markup=InlineKeyboardMarkup(btn))
@@ -615,7 +705,29 @@ async def start(client, message):
         reply_markup=reply_markup
     )
     btn = [[InlineKeyboardButton("✅ ɢᴇᴛ ғɪʟᴇ ᴀɢᴀɪɴ ✅", callback_data=f'del#{file_id}')]]
-    k = await msg.reply(text=f"<b> Movie Update Channel \n\n ❤️‍🔥 @movie_update_channels </b>")
+    k = await msg.reply(
+            text="<b>ᴊᴏɪɴ ᴏᴜʀ ᴏᴛʜᴇʀ ᴄʜᴀɴɴᴇʟ ᴀʟꜱᴏ ☟</b>",
+            reply_markup=InlineKeyboardMarkup(
+              [
+                [
+                  InlineKeyboardButton(
+                     "📰 Updates",
+                     url="https://t.me/movie_update_channels"
+                  ),
+                  InlineKeyboardButton(
+                     "🔞 Viral Videos",
+                     url="https://t.me/+r7R8Znt7ogNkZWFl"
+                  )
+                ],
+              [
+                InlineKeyboardButton(
+                   "🎬 Movie Group",
+                   url="https://t.me/maan_movies2"
+                )
+              ]
+            ]
+          )
+        )
     #await asyncio.sleep(600)
     #await msg.delete()
    # await k.edit_text("<b>✅ ʏᴏᴜʀ ᴍᴇssᴀɢᴇ ɪs sᴜᴄᴄᴇssғᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ ɪғ ʏᴏᴜ ᴡᴀɴᴛ ᴀɢᴀɪɴ ᴛʜᴇɴ ᴄʟɪᴄᴋ ᴏɴ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ</b>",reply_markup=InlineKeyboardMarkup(btn))
