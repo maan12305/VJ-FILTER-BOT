@@ -2607,7 +2607,7 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
         if settings["spell_check"]:
             return await advantage_spell_chok(client, name, msg, reply_msg, ai_search)
         else:
-            return await reply_msg.edit_text(
+            await reply_msg.edit_text(
                 text="""⚜️ 𝐓𝐡𝐢𝐬 𝐌𝐨𝐯𝐢𝐞 𝐍𝐨𝐭 𝐅𝐨𝐮𝐧𝐝 ⚜️ \n **Cʜᴇᴄᴋ Yᴏᴜʀ Sᴘᴇʟʟɪɴɢ Oɴ Gᴏᴏɢʟᴇ Aɴᴅ Tʀʏ Aɢᴀɪɴ ✅** \n\n **ʀᴇǫᴜᴇsᴛ ᴛʜɪs ᴍᴏᴠɪᴇ ғʀᴏᴍ ᴀᴅᴍɪɴ** """,
                 reply_markup=InlineKeyboardMarkup(
                     [
@@ -2619,7 +2619,20 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
                         ]
                     ]
                 )
-            )               
+            )        
+
+            await asyncio.sleep(15)
+
+            try:
+                await message.delete()
+            except:
+                pass
+
+            try:
+                await reply_msg.delete()
+            except:
+                pass
+            return        
     
     pre = 'filep' if settings['file_secure'] else 'file'
     key = f"{message.chat.id}-{message.id}"
