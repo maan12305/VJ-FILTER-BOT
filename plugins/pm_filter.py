@@ -1124,6 +1124,23 @@ async def filter_qualities_cb_handler(client: Client, query: CallbackQuery):
 async def cb_handler(client: Client, query: CallbackQuery):
     if query.data == "close_data":
         await query.message.delete()
+
+    elif query.data.startswith("uploaded#"):
+        _, user_id, movie = query.data.split("#", 2)
+
+        await client.send_message(
+            int(user_id),
+            f"✅ Your requested movie **{movie}** has been uploaded.\n\nPlease search again in the bot."
+        )
+
+        await query.answer("Message sent to user!", show_alert=True)
+
+        await query.message.edit_text(
+            query.message.text + "\n\n\n✅ Status: Uploaded",
+            reply_markup=query.message.reply_markup
+        )
+        return
+    
     elif query.data == "get_trail":
         user_id = query.from_user.id
         free_trial_status = await db.get_free_trial_status(user_id)
