@@ -240,18 +240,30 @@ class Database:
         await self.users.update_one({"id": user_data["id"]}, {"$set": user_data}, upsert=True)
 
     async def save_verification(self, user_id):
-        expiry_time = datetime.datetime.now() + datetime.timedelta(days=1)
-       
-        await self.verify.update_one(
-            {"id": user_id},
-            {
-                "$set": {
-                    "id": user_id,
-                    "expiry_time": expiry_time
-                }
-               },
-                upsert=True
-              )
+        ist = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+        now = datetime.datetime.now(ist)
+
+        # Next day's midnight (12:00 AM IST)
+    
+        next_midnight = datetime.datetime.combine(
+        now.date() + datetime.timedelta(days=1),
+        datetime.time(0, 0),
+        tzinfo=ist
+       )
+
+       # Store as naive datetime for MongoDB compatibility
+       expiry_time = next_midnight.replace(tzinfo=None)
+
+       await self.verify.update_one(
+           {"id": user_id},
+           {
+             "$set":{
+               "id": user_id,
+               "expiry_time": expiry_time
+             }
+            },
+             upsert=True
+       )
 
     async def is_verified(self, user_id):
         user = await self.verify.find_one({"id": user_id})
@@ -261,7 +273,10 @@ class Database:
 
         expiry_time = user.get("expiry_time")
 
-        if expiry_time and expiry_time > datetime.datetime.now():
+        ist = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+        now = datetime.datetime.now(ist).replace(tzinfo=None)
+
+        if expiry_time and expiry_time > now:
             return True
             
         return False
