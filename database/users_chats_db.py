@@ -246,24 +246,24 @@ class Database:
         # Next day's midnight (12:00 AM IST)
     
         next_midnight = datetime.datetime.combine(
-        now.date() + datetime.timedelta(days=1),
-        datetime.time(0, 0),
-        tzinfo=ist
-       )
+            now.date() + datetime.timedelta(days=1),
+            datetime.time(0, 0),
+            tzinfo=ist
+        )
 
-       # Store as naive datetime for MongoDB compatibility
-       expiry_time = next_midnight.replace(tzinfo=None)
+        # Store as naive datetime for MongoDB compatibility
+        expiry_time = next_midnight.replace(tzinfo=None)
 
-       await self.verify.update_one(
-           {"id": user_id},
-           {
-             "$set":{
-               "id": user_id,
-               "expiry_time": expiry_time
-             }
+        await self.verify.update_one(
+            {"id": user_id},
+            {
+                "$set": {
+                    "id": user_id,
+                    "expiry_time": expiry_time
+                }
             },
-             upsert=True
-       )
+            upsert=True
+        )
 
     async def is_verified(self, user_id):
         user = await self.verify.find_one({"id": user_id})
