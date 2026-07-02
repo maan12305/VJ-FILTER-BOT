@@ -76,15 +76,29 @@ async def media(bot, message):
 
         filename = media.file_name
 
+        filename_lower = filename.lower()
+
         quality = "Unknown"
-        if "2160p" in filename.lower() or "4k" in filename.lower():
-            quality = "4K"
-        elif "1080p" in filename.lower():
-            quality = "1080p"
-        elif "720p" in filename.lower():
-            quality = "720p"
-        elif "480p" in filename.lower():
-            quality = "480p"
+        if "hdtc" in filename_lower:
+            quality = "HDTC"
+        elif "hdts" in filename_lower:
+            quality = "HDTS"
+        elif "camrip" in filename_lower or "cam" in filename_lower:
+            quality = "CAMRip"
+        elif "web-dl" in filename_lower or "webdl" in filename_lower:
+            quality = "WEB-DL"
+        elif "webrip" in filename_lower:
+            quality = "WEBRip"
+        elif "hdrip" in filename_lower:
+            quality = "HDRip"
+        elif "bluray" in filename_lower:
+            quality = "BluRay"
+        elif "brrip" in filename_lower:
+            quality = "BRRip"
+        elif "dvdrip" in filename_lower:
+            quality = "DVDRip"
+        elif "predvd" in filename_lower:
+            quality = "PreDVD"
 
         langs = re.findall(
             r'(Hindi|Tamil|Telugu|Malayalam|English|Kannada|Bengali|Punjabi)',
@@ -101,7 +115,7 @@ async def media(bot, message):
 
 **📆 Year - {imdb.get('year', 'N/A')}** 
 **🎥 Genre - {imdb.get('genres', 'N/A')}**
-**📀 Format - {quality}**
+**📀 Quality - {quality}**
 **🔊 Audio - {language}**
 """
         buttons = InlineKeyboardMarkup(
