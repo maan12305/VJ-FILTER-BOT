@@ -99,7 +99,9 @@ async def media(bot, message):
             quality = "DVDRip"
         elif "predvd" in filename_lower:
             quality = "PreDVD"
-
+        elif "hd" in filename_lower:
+            quality = "HDRip"
+            
         langs = re.findall(
             r'(Hindi|Tamil|Telugu|Malayalam|English|Kannada|Bengali|Punjabi)',
             filename,
