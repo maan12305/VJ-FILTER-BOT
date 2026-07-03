@@ -661,6 +661,11 @@ async def send_all(bot, userid, files, ident, chat_id, user_name, query):
                 f_caption = re.sub(r'(?i)\b(join|follow|subscribe)\b\s*[:-]?\s*@\w+', '', f_caption)
                 f_caption = re.sub(r'@\w+', '', f_caption)
                 f_caption = re.sub(r'\n\s*\n+', '\n', f_caption).strip()
+
+                print("CUSTOM_FILE_CAPTION =", CUSTOM_FILE_CAPTION)
+                print("Original Caption =", file["caption"])
+                print("Final Caption =", f_caption)
+                
                 await bot.send_cached_media(
                     chat_id=userid,
                     file_id=file["file_id"],
