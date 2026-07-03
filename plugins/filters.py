@@ -105,7 +105,20 @@ async def addfilter(client, message):
         try:
             msg = get_file_id(message.reply_to_message)
             fileid = msg.file_id if msg else None
-            reply_text, btn, alert = parser(extracted[1], text) if message.reply_to_message.sticker else parser(message.reply_to_message.caption.html, text)
+
+            if message.reply_to_message.sticker:
+                reply_text, btn, alert = parser(extracted[1], text)
+
+            else:
+                caption = message.reply_to_message.caption.html or ""
+
+                caption = re.sub(r'\[@[A-Za-z0-9_]+\]', '', caption)
+                caption = re.sub(r'(?i)\b(join|follow|subscribe)\b\s*[:-]?\s*@\w+', '', caption)
+                caption = re.sub(r'@\w+', '', caption)
+                caption = re.sub(r'\n\s*\n+', '\n', caption).strip()
+
+                reply_text, btn, alert = parser(caption, text)
+
         except:
             reply_text = ""
             btn = "[]"
