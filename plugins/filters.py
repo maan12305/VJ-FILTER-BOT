@@ -3,7 +3,6 @@
 # Ask Doubt on telegram @KingVJ01
 
 import io
-import re
 from pyrogram import filters, Client, enums
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from database.filters_mdb import(
@@ -79,25 +78,16 @@ async def addfilter(client, message):
             rm = message.reply_to_message.reply_markup
             btn = rm.inline_keyboard
             msg = get_file_id(message.reply_to_message)
-
             if msg:
                 fileid = msg.file_id
-                reply_text = message.reply_to_message.caption.html or ""
-
-                reply_text = re.sub(r'\[@[A-Za-z0-9_]+\]', '', reply_text)
-                reply_text = re.sub(r'(?i)\b(join|follow|subscribe)\b\s*[:-]?\s*@\w+', '', reply_text)
-                reply_text = re.sub(r'@\w+', '', reply_text)
-                reply_text = re.sub(r'\n\s*\n+', '\n', reply_text).strip()
-
+                reply_text = message.reply_to_message.caption.html
             else:
                 reply_text = message.reply_to_message.text.html
                 fileid = None
-
             alert = None
-
         except:
             reply_text = ""
-            btn = "[]"
+            btn = "[]" 
             fileid = None
             alert = None
 
@@ -105,20 +95,7 @@ async def addfilter(client, message):
         try:
             msg = get_file_id(message.reply_to_message)
             fileid = msg.file_id if msg else None
-
-            if message.reply_to_message.sticker:
-                reply_text, btn, alert = parser(extracted[1], text)
-
-            else:
-                caption = message.reply_to_message.caption.html or ""
-
-                caption = re.sub(r'\[@[A-Za-z0-9_]+\]', '', caption)
-                caption = re.sub(r'(?i)\b(join|follow|subscribe)\b\s*[:-]?\s*@\w+', '', caption)
-                caption = re.sub(r'@\w+', '', caption)
-                caption = re.sub(r'\n\s*\n+', '\n', caption).strip()
-
-                reply_text, btn, alert = parser(caption, text)
-
+            reply_text, btn, alert = parser(extracted[1], text) if message.reply_to_message.sticker else parser(message.reply_to_message.caption.html, text)
         except:
             reply_text = ""
             btn = "[]"
