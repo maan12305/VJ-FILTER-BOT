@@ -2,6 +2,7 @@
 # Subscribe YouTube Channel For Amazing Bot @Tech_VJ
 # Ask Doubt on telegram @KingVJ01
 import os
+import re
 import aiohttp
 import logging, asyncio, os, re, random, pytz, aiohttp, requests, string, json, http.client
 from info import *
@@ -655,6 +656,11 @@ async def send_all(bot, userid, files, ident, chat_id, user_name, query):
                         f_caption = f_caption
                 if f_caption is None:
                     f_caption = f"{title}"
+
+                f_caption = re.sub(r'\[@[A-Za-z0-9_]+\]', '', f_caption)
+                f_caption = re.sub(r'(?i)\b(join|follow|subscribe)\b\s*[:-]?\s*@\w+', '', f_caption)
+                f_caption = re.sub(r'@\w+', '', f_caption)
+                f_caption = re.sub(r'\n\s*\n+', '\n', f_caption).strip()
                 await bot.send_cached_media(
                     chat_id=userid,
                     file_id=file["file_id"],
