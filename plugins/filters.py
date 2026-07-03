@@ -3,6 +3,7 @@
 # Ask Doubt on telegram @KingVJ01
 
 import io
+import re
 from pyrogram import filters, Client, enums
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from database.filters_mdb import(
@@ -78,16 +79,25 @@ async def addfilter(client, message):
             rm = message.reply_to_message.reply_markup
             btn = rm.inline_keyboard
             msg = get_file_id(message.reply_to_message)
+
             if msg:
                 fileid = msg.file_id
-                reply_text = message.reply_to_message.caption.html
+                reply_text = message.reply_to_message.caption.html or ""
+
+                reply_text = re.sub(r'\[@[A-Za-z0-9_]+\]', '', reply_text)
+                reply_text = re.sub(r'(?i)\b(join|follow|subscribe)\b\s*[:-]?\s*@\w+', '', reply_text)
+                reply_text = re.sub(r'@\w+', '', reply_text)
+                reply_text = re.sub(r'\n\s*\n+', '\n', reply_text).strip()
+
             else:
                 reply_text = message.reply_to_message.text.html
                 fileid = None
+
             alert = None
+
         except:
             reply_text = ""
-            btn = "[]" 
+            btn = "[]"
             fileid = None
             alert = None
 
