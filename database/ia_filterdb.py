@@ -26,7 +26,6 @@ async def save_file(media):
     file_id = unpack_new_file_id(media.file_id)
     file_name = clean_file_name(media.file_name)
     new_file_name = f" {file_name}"
-    print("Saving caption:", media.caption.html if media.caption else None)
     
     file = {
         'file_id': file_id,
