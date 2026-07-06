@@ -17,21 +17,16 @@ async def premium_reminder():
                     await TechVJBot.send_message(
                         chat_id=user["id"],
                         text=(
-                            "⚠️ **Premium Expiry Reminder** ⚠️\n\n"
-                            "👋 Hello,\n\n"
-                            "Your **Premium Membership** will expire in **3 days**.\n\n"
-                            "✨ Renew now to continue enjoying:\n"
-                            "• Unlimited Access\n"
-                            "• Premium Features\n"
-                            "• Fast Service\n\n"
-                            "⏳ Don't wait until your premium expires.\n\n"
-                            "👇 Click the button below to contact the Admin."
+                            f"⚠️ **𝙋𝙍𝙀𝙈𝙄𝙐𝙈 𝙀𝙓𝙋𝙄𝙍𝙔 𝙍𝙀𝙈𝙄𝙉𝘿𝙀𝙍** ⚠️\n\n"
+                            f"**𝙃𝙚𝙮 👋 {user.get('name', 'User')},**\n\n"
+                            "**ʏᴏᴜʀ ᴘʀᴇᴍɪᴜᴍ ᴘʟᴀɴ ɪꜱ ɢᴏɪɴɢ ᴛᴏ ᴇxᴘɪʀᴇ ɪɴ 𝟯 ᴅᴀʏꜱ. ʀᴇɴᴇᴡ ꜱᴏᴏɴ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ ᴇɴᴊᴏʏɪɴɢ ᴀʟʟ ᴘʀᴇᴍɪᴜᴍ ꜰᴇᴀᴛᴜʀᴇꜱ.**\n\n"
+                            "**📌 𝘾𝙡𝙞𝙘𝙠 /plan 𝙁𝙤𝙧 𝙋𝙧𝙞𝙘𝙚𝙨.**"
                         ),
                         reply_markup=InlineKeyboardMarkup(
                             [
                                 [
                                     InlineKeyboardButton(
-                                        "📩 Contact Admin",
+                                        "💎 Contact Admin",
                                         url="https://t.me/YOUR_USERNAME"
                                     )
                                 ]
@@ -48,7 +43,7 @@ async def premium_reminder():
                     print(f"3 Days Reminder Error: {e}")
 
             # =========================
-            # Expiry Day Reminder
+            # Premium Expired
             # =========================
             cursor = await db.get_expired_today_users()
 
@@ -57,18 +52,16 @@ async def premium_reminder():
                     await TechVJBot.send_message(
                         chat_id=user["id"],
                         text=(
-                            "❌ **Premium Expired** ❌\n\n"
-                            "👋 Hello,\n\n"
-                            "Your **Premium Membership** has expired.\n\n"
-                            "🚫 Premium features are no longer available.\n\n"
-                            "💎 Renew your Premium now to continue enjoying all Premium benefits.\n\n"
-                            "👇 Click the button below to renew."
+                            f"❌ **𝙋𝙍𝙀𝙈𝙄𝙐𝙈 𝙀𝙓𝙋𝙄𝙍𝙀𝘿** ❌\n\n"
+                            f"**𝙃𝙚𝙮 👋 {user.get('name', 'User')},**\n\n"
+                            "**ʏᴏᴜʀ ᴘʀᴇᴍɪᴜᴍ ᴘʟᴀɴ ʜᴀꜱ ᴇxᴘɪʀᴇᴅ. ʀᴇɴᴇᴡ ɴᴏᴡ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ ᴇɴᴊᴏʏɪɴɢ ᴀʟʟ ᴘʀᴇᴍɪᴜᴍ ꜰᴇᴀᴛᴜʀᴇꜱ.**\n\n"
+                            "**📌 𝘾𝙡𝙞𝙘𝙠 /plan 𝙁𝙤𝙧 𝙋𝙧𝙞𝙘𝙚𝙨.**"
                         ),
                         reply_markup=InlineKeyboardMarkup(
                             [
                                 [
                                     InlineKeyboardButton(
-                                        "💎 Renew Premium",
+                                        "💎 Contact Admin",
                                         url="https://t.me/YOUR_USERNAME"
                                     )
                                 ]
@@ -84,7 +77,7 @@ async def premium_reminder():
                 except Exception as e:
                     print(f"Expiry Reminder Error: {e}")
 
-            # Check every hour
+            # Check every 1 hour
             await asyncio.sleep(3600)
 
         except Exception as e:
