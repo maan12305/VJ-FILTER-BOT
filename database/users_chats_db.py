@@ -322,6 +322,22 @@ class Database:
         })
         return count
 
+    async def get_expiring_premium_users(self):
+        now = datetime.datetime.now()
+
+        start = now + datetime.timedelta(days=3)
+        end = start + datetime.timedelta(days=1)
+
+        return self.users.find({
+            "expiry_time": {
+                "$gte": start,
+                "$lt": end
+            },
+            "reminder_sent": {
+                "$ne": True
+            }
+        })
+
     async def set_thumbnail(self, id, file_id):
         await self.col.update_one({'id': int(id)}, {'$set': {'file_id': file_id}})
 
