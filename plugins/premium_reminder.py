@@ -29,7 +29,7 @@ async def premium_reminder():
                 except Exception as e:
                     print(f"Reminder Error: {e}")
 
-            await asyncio.sleep(86400)
+            await asyncio.sleep(3600)
 
         except Exception as e:
             print(f"Premium Reminder Loop Error: {e}")
