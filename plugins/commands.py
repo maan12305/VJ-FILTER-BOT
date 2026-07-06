@@ -192,7 +192,7 @@ async def start(client, message):
                 seconds = await get_seconds(time)
                 if seconds > 0:
                     expiry_time = datetime.datetime.now() + datetime.timedelta(seconds=seconds)
-                    user_data = {"id": user_id, "expiry_time": expiry_time} 
+                    user_data = {"id": user_id, "expiry_time": expiry_time, "reminder_sent": False} 
                     await db.update_user(user_data)  # Use the update_user method to update or insert user data
                     await delete_all_referal_users(user_id)
                     await client.send_message(chat_id = user_id, text = "<b>You Have Successfully Completed Total Referal.\n\nYou Added In Premium For {}</b>".format(REFERAL_PREMEIUM_TIME))
@@ -1440,7 +1440,7 @@ async def give_premium_cmd_handler(client, message):
         seconds = await get_seconds(time)
         if seconds > 0:
             expiry_time = datetime.datetime.now() + datetime.timedelta(seconds=seconds)
-            user_data = {"id": user_id, "expiry_time": expiry_time} 
+            user_data = {"id": user_id, "expiry_time": expiry_time, "reminder_sent": False} 
             await db.update_user(user_data)  # Use the update_user method to update or insert user data
             await message.reply_text("Premium access added to the user.")            
             await client.send_message(
@@ -1467,7 +1467,7 @@ async def remove_premium_cmd_handler(client, message):
         seconds = await get_seconds(time)
         if seconds > 0:
             expiry_time = datetime.datetime.now() + datetime.timedelta(seconds=seconds)
-            user_data = {"id": user_id, "expiry_time": expiry_time}  # Using "id" instead of "user_id"
+            user_data = {"id": user_id, "expiry_time": expiry_time, "reminder_sent": False}  # Using "id" instead of "user_id"
             await db.update_user(user_data)  # Use the update_user method to update or insert user data
             await message.reply_text("Premium access removed to the user.")
             await client.send_message(
