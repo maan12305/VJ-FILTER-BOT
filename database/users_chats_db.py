@@ -333,7 +333,19 @@ class Database:
                 "$gte": start,
                 "$lt": end
             },
-            "reminder_sent": {
+            "reminder_3days_sent": {
+                "$ne": True
+            }
+        })
+
+    async def get_expired_today_users(self):
+        now = datetime.datetime.now()
+
+        return self.users.find({
+            "expiry_time": {
+                "$lte": now
+            },
+            "expiry_reminder_sent": {
                 "$ne": True
             }
         })
