@@ -1,6 +1,7 @@
 # Don't Remove Credit @VJ_Bots
 # Subscribe YouTube Channel For Amazing Bot @Tech_VJ
 # Ask Doubt on telegram @KingVJ01
+import binascii
 from plugins.pm_filter import auto_filter
 import os, string, logging, random, asyncio, time, datetime, re, sys, json, base64
 from Script import script
