@@ -594,7 +594,16 @@ async def start(client, message):
             await auto_filter(client, movie, message, reply_msg, ai_search)
             return
             
-        pre, file_id = ((base64.urlsafe_b64decode(data + "=" * (-len(data) % 4))).decode("ascii")).split("_", 1)
+        try:
+            pre, file_id = (
+                base64.urlsafe_b64decode(data + "=" * (-len(data) % 4))
+                .decode("ascii")
+                .split("_", 1)
+            )
+        except (binascii.Error, UnicodeDecodeError, ValueError):
+            await message.reply_text("❌ Invalid or expired link.")
+            return
+
         try:
             if not await db.has_premium_access(message.from_user.id):
                 if not await check_verification(client, message.from_user.id) and VERIFY == True:
