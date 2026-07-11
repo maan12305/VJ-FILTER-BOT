@@ -2517,59 +2517,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ]
             reply_markup = InlineKeyboardMarkup(buttons)
             await query.message.edit_reply_markup(reply_markup)
-    
-    elif query.data.startswith("notavailable#"):
-        _, user_id, movie = query.data.split("#", 2)
-
-        await client.send_message(
-            int(user_id),
-            f"❌ Sorry, your requested movie <b>{movie}</b> is currently not available.",
-            parse_mode=enums.ParseMode.HTML
-        )
-
-        await query.answer("Message sent to user!", show_alert=True)
-
-        await query.message.edit_text(
-            f"{query.message.text}\n\n❌ <b>Status:</b> Not Available",
-            parse_mode=enums.ParseMode.HTML
-        )
-        return
-
-    elif query.data.startswith("spellwrong#"):
-        _, user_id, movie = query.data.split("#", 2)
-
-        await client.send_message(
-            int(user_id),
-            f"✏️ The movie name <b>{movie}</b> appears to have incorrect spelling.\nPlease check the spelling and request again.",
-            parse_mode=enums.ParseMode.HTML
-        )
-
-        await query.answer("Message sent to user!", show_alert=True)
-
-        await query.message.edit_text(
-            f"{query.message.text}\n\n✏️ <b>Status:</b> Spelling Wrong",
-            parse_mode=enums.ParseMode.HTML
-        )
-        return
-
-        elif query.data.startswith("uploaded#"):
-            _, user_id, movie = query.data.split("#", 2)
-
-        await client.send_message(
-            int(user_id),
-            f"✅ Good news!\n\nYour requested movie <b>{movie}</b> has been uploaded and is now available.\n\nPlease search for it again in the group.",
-            parse_mode=enums.ParseMode.HTML
-        )
-
-        await query.answer("User notified successfully!", show_alert=True)
-
-        await query.message.edit_text(
-            f"{query.message.text}\n\n✅ <b>Status:</b> Uploaded",
-            parse_mode=enums.ParseMode.HTML
-        )
-        return
-
     await query.answer(MSG_ALRT)
+
 async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
     curr_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
     if not spoll:
