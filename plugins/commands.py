@@ -602,7 +602,6 @@ async def start(client, message):
                 .split("_", 1)
             )
         except (binascii.Error, UnicodeDecodeError, ValueError):
-            await message.reply_text("❌ Invalid or expired link.")
             return
 
         try:
