@@ -8,7 +8,6 @@ from pyrogram.file_id import FileId
 from pymongo import MongoClient
 from pymongo.errors import DuplicateKeyError
 from info import FILE_DB_URI, SEC_FILE_DB_URI, DATABASE_NAME, COLLECTION_NAME, MULTIPLE_DATABASE, USE_CAPTION_FILTER, MAX_B_TN
-from rapidfuzz import process
 
 # First Database For File Saving 
 client = MongoClient(FILE_DB_URI)
@@ -120,22 +119,6 @@ async def get_search_results(chat_id, query, file_type=None, max_results=10, off
     next_offset = "" if (offset + max_results) >= total_results else (offset + max_results)
 
     return files, next_offset, total_results
-
-async def get_all_movie_names():
-    movies = []
-
-    cursor = col.find({}, {"file_name": 1})
-    for file in cursor:
-        if file.get("file_name"):
-            movies.append(file["file_name"])
-
-    if MULTIPLE_DATABASE:
-        cursor = sec_col.find({}, {"file_name": 1})
-        for file in cursor:
-            if file.get("file_name"):
-                movies.append(file["file_name"])
-
-    return list(set(movies))
 
 async def get_bad_files(query, file_type=None, use_filter=False):
     """For given query return (results, next_offset)"""
