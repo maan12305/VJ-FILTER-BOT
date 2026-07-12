@@ -2545,11 +2545,31 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
             files, offset, total_results = await get_search_results(message.chat.id ,search, offset=0, filter=True)
             settings = await get_settings(message.chat.id)
     if not files:
-        if settings["spell_check"]:
-            return await advantage_spell_chok(client, name, msg, reply_msg, ai_search)
-        else:
-            await client.send_message(REQST_CHANNEL,f"""🎬 <b>New Movie Request</b>
-            
+        movie_names = await get_all_movie_names()
+
+        match = process.extractOne(search, movie_names, score_cutoff=80)
+
+        if match:
+            corrected_name = match[0]
+
+            files, offset, total_results = await get_search_results(
+                message.chat.id,
+                corrected_name,
+                offset=0,
+                filter=True
+            )
+
+            if files:
+                search = corrected_name
+
+        if not files:
+            if settings["spell_check"]:
+                return await advantage_spell_chok(client, name, msg, reply_msg, ai_search)
+
+            await client.send_message(
+                REQST_CHANNEL,
+                f"""🎬 <b>New Movie Request</b>  
+                
             👤 <b>User:</b> {message.from_user.mention}
             🆔 <b>User ID:</b> <code>{message.from_user.id}</code>
             🎞 <b>Movie:</b> <code>{search}</code>
