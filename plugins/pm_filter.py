@@ -1915,7 +1915,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "about":
         buttons = [[
             InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=GRP_LNK),
-            InlineKeyboardButton('Sᴏᴜʀᴄᴇ Cᴏᴅᴇ', url="https://github.com/VJBots/VJ-FILTER-BOT")
+            InlineKeyboardButton('Sᴏᴜʀᴄᴇ Cᴏᴅᴇ',callback_data="source_code")
         ],[
             InlineKeyboardButton('Hᴏᴍᴇ', callback_data='start'),
             InlineKeyboardButton('Cʟᴏsᴇ', callback_data='close_data')
@@ -2038,6 +2038,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
             text=script.FILE_STORE_TXT,
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
+        )
+
+    elif query.data == "source_code":
+        await query.answer(
+            "ᴸᵃᵘᵈᵃ ᴸᵉ ᴹᵉʳᵃ···· 😂",
+            show_alert=True
         )
 
     elif query.data == "r_txt":
